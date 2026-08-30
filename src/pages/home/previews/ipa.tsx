@@ -17,10 +17,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@hope-ui/solid"
-import { createSignal } from "solid-js"
+import { createEffect, createSignal } from "solid-js"
 import { BsQrCode } from "solid-icons/bs"
 import QRCode from "qrcode"
-import { useT, useUtil, useLink } from "~/hooks"
+import { useT, useLink } from "~/hooks"
 import { objStore } from "~/store"
 import { api, baseName, notify, safeBtoa } from "~/utils"
 import { FileInfo } from "./info"
@@ -31,7 +31,6 @@ const Ipa = () => {
   const t = useT()
   const [installing, setInstalling] = createSignal(false)
   const [trInstalling, setTrInstalling] = createSignal(false)
-  const { copy } = useUtil()
   const { currentObjLink } = useLink()
   const [qrUrl, setQrUrl] = createSignal("")
   const [qrOpen, setQrOpen] = createSignal(false)
@@ -39,11 +38,11 @@ const Ipa = () => {
   const [shortLinkOpen, setShortLinkOpen] = createSignal(false)
   const sourceLink = () => currentObjLink(true)
 
-  const createShortLink = async () => {
+  const createShortLink = async (url = sourceLink()) => {
     const response = await fetch(shortLinkAPI, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url: sourceLink() }),
+      body: JSON.stringify({ url }),
     })
     const body = await response.json()
     if (!response.ok || !body.link) {
@@ -52,12 +51,38 @@ const Ipa = () => {
     return body.link as string
   }
 
+  const getShortLink = async () => {
+    if (shortLink()) return shortLink()
+    const link = await createShortLink()
+    setShortLink(link)
+    return link
+  }
+
+  const copyToClipboard = async (value: string) => {
+    try {
+      await navigator.clipboard.writeText(value)
+      return true
+    } catch {
+      const textarea = document.createElement("textarea")
+      textarea.value = value
+      textarea.style.position = "fixed"
+      textarea.style.opacity = "0"
+      document.body.appendChild(textarea)
+      textarea.select()
+      const copied = document.execCommand("copy")
+      textarea.remove()
+      return copied
+    }
+  }
+
   const copyShortLink = async () => {
     try {
-      const link = await createShortLink()
-      setShortLink(link)
+      const link = await getShortLink()
+      if (await copyToClipboard(link)) {
+        notify.success(t("global.copied"))
+        return
+      }
       setShortLinkOpen(true)
-      await copy(link)
     } catch (error) {
       notify.error(error instanceof Error ? error.message : "Failed to create short link")
     }
@@ -69,7 +94,7 @@ const Ipa = () => {
       return
     }
     try {
-      const shortLink = await createShortLink()
+      const shortLink = await getShortLink()
       setQrUrl(
         await QRCode.toDataURL(shortLink, {
           type: "image/jpeg",
@@ -81,6 +106,17 @@ const Ipa = () => {
       notify.error(error instanceof Error ? error.message : "Failed to create short link")
     }
   }
+
+  createEffect(() => {
+    const url = sourceLink()
+    setShortLink("")
+    setQrOpen(false)
+    void createShortLink(url)
+      .then((link) => {
+        if (sourceLink() === url) setShortLink(link)
+      })
+      .catch(() => undefined)
+  })
 
   return (
     <FileInfo>
@@ -114,7 +150,12 @@ const Ipa = () => {
         >
           {t(`home.preview.${trInstalling() ? "tr-installing" : "tr-install"}`)}
         </Button>
-        <Button as="a" href={objStore.raw_url} target="_blank">
+        <Button
+          as="a"
+          href={shortLink() || undefined}
+          target="_blank"
+          disabled={!shortLink()}
+        >
           {t("home.preview.download")}
         </Button>
         <ButtonGroup colorScheme="accent" attached>
