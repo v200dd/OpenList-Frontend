@@ -15,17 +15,18 @@ export const languages = Object.keys(langs).map((langPath) => {
   return { code: langCode, lang: langName }
 })
 
-// determine browser's default language
-const userLang = navigator.language.toLowerCase()
-const defaultLang =
-  languages.find((lang) => lang.code.toLowerCase() === userLang)?.code ||
-  languages.find(
-    (lang) => lang.code.toLowerCase().split("-")[0] === userLang.split("-")[0],
-  )?.code ||
-  "en"
+const defaultLang = "zh-CN"
+const savedLang = localStorage.getItem("lang")
+const hasMigratedLanguage = localStorage.getItem("language-migration-v1")
 
-// Get initial language from localStorage or fallback to defaultLang
-export let initialLang = localStorage.getItem("lang") ?? defaultLang
+// Earlier custom builds only shipped English and stored it as the language.
+// Reset that automatic choice once after Chinese translations are restored.
+export let initialLang =
+  savedLang === "en" && !hasMigratedLanguage ? defaultLang : savedLang ?? defaultLang
+
+if (!hasMigratedLanguage) {
+  localStorage.setItem("language-migration-v1", "true")
+}
 
 if (!languages.some((lang) => lang.code === initialLang)) {
   initialLang = defaultLang

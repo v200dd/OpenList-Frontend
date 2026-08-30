@@ -4,6 +4,13 @@ import {
   HStack,
   IconButton,
   Image,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -28,6 +35,8 @@ const Ipa = () => {
   const { currentObjLink } = useLink()
   const [qrUrl, setQrUrl] = createSignal("")
   const [qrOpen, setQrOpen] = createSignal(false)
+  const [shortLink, setShortLink] = createSignal("")
+  const [shortLinkOpen, setShortLinkOpen] = createSignal(false)
   const sourceLink = () => currentObjLink(true)
 
   const createShortLink = async () => {
@@ -45,7 +54,10 @@ const Ipa = () => {
 
   const copyShortLink = async () => {
     try {
-      await copy(await createShortLink())
+      const link = await createShortLink()
+      setShortLink(link)
+      setShortLinkOpen(true)
+      await copy(link)
     } catch (error) {
       notify.error(error instanceof Error ? error.message : "Failed to create short link")
     }
@@ -130,6 +142,21 @@ const Ipa = () => {
           </Popover>
         </ButtonGroup>
       </HStack>
+      <Modal opened={shortLinkOpen()} onClose={() => setShortLinkOpen(false)}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalHeader>{t("home.toolbar.copy_link")}</ModalHeader>
+          <ModalBody pb="$6">
+            <Input
+              value={shortLink()}
+              readOnly
+              onFocus={(event) => event.currentTarget.select()}
+              onClick={(event) => event.currentTarget.select()}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </FileInfo>
   )
 }
