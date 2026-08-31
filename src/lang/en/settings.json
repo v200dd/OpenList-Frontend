@@ -113,6 +113,8 @@
   "share_preview_archives_by_default": "Share preview archives by default",
   "share_preview_download_by_default": "Share preview download by default",
   "share_summary_content": "Share summary content",
+  "short_link_api": "Short link API",
+  "short_link_api-tips": "POST JSON: {\"url\":\"...\"}; response JSON must include link",
   "show_disk_usage_in_plain_text": "Show disk usage in plain text",
   "sign_all": "Sign all",
   "site_title": "Site title",

@@ -21,11 +21,9 @@ import { createEffect, createSignal } from "solid-js"
 import { BsQrCode } from "solid-icons/bs"
 import QRCode from "qrcode"
 import { useT, useLink } from "~/hooks"
-import { objStore } from "~/store"
+import { getSetting, objStore } from "~/store"
 import { api, baseName, notify, safeBtoa } from "~/utils"
 import { FileInfo } from "./info"
-
-const shortLinkAPI = "https://url.200996.xyz/create"
 
 const Ipa = () => {
   const t = useT()
@@ -39,6 +37,10 @@ const Ipa = () => {
   const sourceLink = () => currentObjLink(true)
 
   const createShortLink = async (url = sourceLink()) => {
+    const shortLinkAPI = getSetting("short_link_api").trim()
+    if (!shortLinkAPI) {
+      throw new Error("Short link API is not configured")
+    }
     const response = await fetch(shortLinkAPI, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

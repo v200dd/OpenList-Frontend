@@ -112,6 +112,8 @@
   "share_preview_archives_by_default": "分享預設情況下預覽壓縮檔",
   "share_preview_download_by_default": "分享預設情況下以下載方式預覽檔案",
   "share_summary_content": "分享連結複製內容",
+  "short_link_api": "短連結介面",
+  "short_link_api-tips": "POST JSON：{\"url\":\"...\"}；回應 JSON 必須包含 link 欄位",
   "show_disk_usage_in_plain_text": "以純文字顯示磁碟空間用量",
   "sign_all": "簽署所有",
   "site_title": "網站標題",

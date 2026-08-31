@@ -112,6 +112,8 @@
   "share_preview_archives_by_default": "分享默认情况下预览压缩包",
   "share_preview_download_by_default": "分享默认情况下以 Download 方式预览文件",
   "share_summary_content": "分享链接复制内容",
+  "short_link_api": "短链接接口",
+  "short_link_api-tips": "POST JSON：{\"url\":\"...\"}；响应 JSON 必须包含 link 字段",
   "show_disk_usage_in_plain_text": "以普通文本展示磁盘空间用量",
   "sign_all": "签名所有",
   "site_title": "网站标题",
