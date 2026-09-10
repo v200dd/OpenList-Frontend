@@ -9,6 +9,7 @@ import { ObjType, UserMethods } from "~/types"
 import {
   getSettingBool,
   haveSelected,
+  isFileDownloadEnabled,
   me,
   objStore,
   oneChecked,
@@ -160,6 +161,7 @@ export const ContextMenu = () => {
       </Item>
       <Show when={oneChecked()}>
         <Item
+          hidden={() => !isFileDownloadEnabled()}
           onClick={({ props }) => {
             if (props.is_dir) {
               copySelectedPreviewPage()
@@ -171,6 +173,7 @@ export const ContextMenu = () => {
           <ItemContent name="copy_link" />
         </Item>
         <Item
+          hidden={() => !isFileDownloadEnabled()}
           onClick={({ props }) => {
             if (props.is_dir) {
               if (!canPackageDownload()) {
@@ -227,6 +230,7 @@ export const ContextMenu = () => {
         </Submenu>
       </Show>
       <Show when={!oneChecked() && haveSelected()}>
+        <Show when={isFileDownloadEnabled()}>
         <Submenu label={<ItemContent name="copy_link" />}>
           <Item onClick={copySelectedPreviewPage}>
             {t("home.toolbar.preview_page")}
@@ -256,6 +260,7 @@ export const ContextMenu = () => {
           </Show>
           <Item onClick={sendToAria2}>{t("home.toolbar.send_aria2")}</Item>
         </Submenu>
+        </Show>
       </Show>
     </Menu>
   )

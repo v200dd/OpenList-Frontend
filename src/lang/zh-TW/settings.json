@@ -15,6 +15,8 @@
   "decompress_download_task_threads_num": "解壓下載任務執行緒數",
   "decompress_upload_task_threads_num": "解壓上傳任務執行緒數",
   "default_page_size": "預設每頁數量",
+  "enable_file_download": "允許下載和複製連結",
+  "enable_file_download-tips": "關閉後隱藏下載、複製連結、二維碼，以及右鍵選單中的同類選項",
   "external_previews": "外部預覽",
   "favicon": "網站圖示",
   "filename_char_mapping": "檔名字元對應",

@@ -3,6 +3,7 @@ import { createMemo, For, Show } from "solid-js"
 import {
   checkboxOpen,
   haveSelected,
+  isFileDownloadEnabled,
   objStore,
   selectAll,
   State,
@@ -79,8 +80,10 @@ export const Center = () => {
                   }}
                 />
               </Show>
-              <CopyLink />
-              <Download />
+              <Show when={isFileDownloadEnabled()}>
+                <CopyLink />
+                <Download />
+              </Show>
               <CenterIcon
                 name="cancel_select"
                 onClick={() => {

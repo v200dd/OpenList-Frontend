@@ -26,6 +26,7 @@ import {
 import { Dynamic } from "solid-js/web"
 import {
   getMainColor,
+  isFileDownloadEnabled,
   local,
   me,
   OrderBy,
@@ -181,7 +182,7 @@ const ContextMenu = () => {
     >
       <Item
         hidden={({ props }) => {
-          return props.obj.is_dir
+          return !isFileDownloadEnabled() || props.obj.is_dir
         }}
         onClick={({ props }) => {
           download(props.url)
@@ -191,7 +192,7 @@ const ContextMenu = () => {
       </Item>
       <Item
         hidden={({ props }) => {
-          return props.obj.is_dir
+          return !isFileDownloadEnabled() || props.obj.is_dir
         }}
         onClick={({ props }) => {
           copy(props.url)

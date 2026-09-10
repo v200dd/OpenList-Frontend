@@ -5,6 +5,7 @@ import { Error, FullLoading, SelectWrapper } from "~/components"
 import { objStore } from "~/store"
 import { useRouter } from "~/hooks"
 import { Download } from "../previews/download"
+import { FileInfo } from "../previews/info"
 import { OpenWith } from "./open-with"
 import { getPreviews } from "../previews"
 
@@ -22,7 +23,40 @@ const File = () => {
   })
 
   return (
-    <Show when={previews.length > 1} fallback={<Download openWith />}>
+    <Show
+      when={previews.length > 1}
+      fallback={
+        previews.length === 1 && previews[0].key !== "download" ? (
+          <VStack w="$full" spacing="$2">
+            <HStack w="$full" spacing="$2">
+              <SelectWrapper
+                alwaysShowBorder
+                value={cur()?.key || ""}
+                onChange={(key) => {
+                  setSearchParams({ preview: key }, { replace: true })
+                }}
+                options={previews.map((item) => ({
+                  value: item.key,
+                  label: item.name,
+                }))}
+              />
+              <OpenWith />
+            </HStack>
+            <ErrorBoundary fallback={(err) => <Error msg={String(err)} />}>
+              <Suspense fallback={<FullLoading />}>
+                <Dynamic component={cur()?.component} />
+              </Suspense>
+            </ErrorBoundary>
+          </VStack>
+        ) : previews.length === 1 ? (
+          <Download openWith />
+        ) : (
+          <FileInfo>
+            <OpenWith />
+          </FileInfo>
+        )
+      }
+    >
       <VStack w="$full" spacing="$2">
         <HStack w="$full" spacing="$2">
           <SelectWrapper

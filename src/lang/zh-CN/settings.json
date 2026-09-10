@@ -15,6 +15,8 @@
   "decompress_download_task_threads_num": "解压下载任务线程数",
   "decompress_upload_task_threads_num": "解压上传任务线程数",
   "default_page_size": "默认每页数量",
+  "enable_file_download": "允许下载和复制链接",
+  "enable_file_download-tips": "关闭后隐藏下载、复制链接、二维码，以及右键菜单中的同类选项",
   "external_previews": "外部预览",
   "favicon": "网站图标",
   "filename_char_mapping": "文件名字符映射",

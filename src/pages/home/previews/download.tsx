@@ -11,7 +11,7 @@ import {
   PopoverTrigger,
 } from "@hope-ui/solid"
 import { useCopyLink, useLink, useT } from "~/hooks"
-import { objStore } from "~/store"
+import { isFileDownloadEnabled, objStore } from "~/store"
 import { FileInfo } from "./info"
 import { OpenWith } from "../file/open-with"
 import { createSignal, Show } from "solid-js"
@@ -31,6 +31,7 @@ export const Download = (props: { openWith?: boolean }) => {
   const [hover, setHover] = createSignal(false)
   return (
     <FileInfo>
+      <Show when={isFileDownloadEnabled()}>
       <HStack spacing="$2">
         <ButtonGroup colorScheme="accent" attached>
           <Button onClick={() => copyCurrentRawLink(true)}>
@@ -64,6 +65,7 @@ export const Download = (props: { openWith?: boolean }) => {
           {t("home.preview.download")}
         </Button>
       </HStack>
+      </Show>
       <Show when={props.openWith}>
         <OpenWith />
       </Show>

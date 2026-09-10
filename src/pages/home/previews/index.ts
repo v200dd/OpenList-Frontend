@@ -1,5 +1,11 @@
 import { Component, lazy } from "solid-js"
-import { getIframePreviews, me, getSettingBool, isArchive } from "~/store"
+import {
+  getIframePreviews,
+  me,
+  getSettingBool,
+  isArchive,
+  isFileDownloadEnabled,
+} from "~/store"
 import { Obj, ObjType, UserMethods, UserPermissions, ArchiveObj } from "~/types"
 import { ext } from "~/utils"
 import { generateIframePreview } from "./iframe"
@@ -267,11 +273,11 @@ export const getPreviews = (
   if (isLargeTextFile) {
     // Case 1: Large text file. Place "Download" at the very beginning.
     // The standard text previews (Markdown, etc.) are already in `res` and will appear after it.
-    res.unshift(downloadComponent)
+    if (isFileDownloadEnabled()) res.unshift(downloadComponent)
   } else if (noPreviewsFound && isSmallFile) {
     // Case 2: No other previews found for a small file.
     // Add "Download" first, then suggest default text previews.
-    res.push(downloadComponent)
+    if (isFileDownloadEnabled()) res.push(downloadComponent)
     if (!isShare() || getSettingBool("share_preview")) {
       const textPreviewsToAdd = previews
         .filter((p) =>
@@ -289,7 +295,7 @@ export const getPreviews = (
   } else {
     // Case 3: The "normal" case for all other files (images, videos, small text files, etc.).
     // Add "Download" as the last fallback option in the high-priority list.
-    res.push(downloadComponent)
+    if (isFileDownloadEnabled()) res.push(downloadComponent)
   }
   return res.concat(subsequent)
 }

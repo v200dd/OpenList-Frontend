@@ -20,6 +20,8 @@ export const getSettingBool = (key: string) => {
   const value = getSetting(key)
   return value === "true" || value === "1"
 }
+export const isFileDownloadEnabled = () =>
+  getSetting("enable_file_download") !== "false"
 export const getSettingNumber = (key: string, defaultV?: number) => {
   const value = getSetting(key)
   if (value) {

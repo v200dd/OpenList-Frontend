@@ -17,11 +17,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@hope-ui/solid"
-import { createEffect, createSignal } from "solid-js"
+import { createEffect, createSignal, Show } from "solid-js"
 import { BsQrCode } from "solid-icons/bs"
 import QRCode from "qrcode"
 import { useT, useLink } from "~/hooks"
-import { getSetting, objStore } from "~/store"
+import { getSetting, isFileDownloadEnabled, objStore } from "~/store"
 import { api, baseName, notify, safeBtoa } from "~/utils"
 import { FileInfo } from "./info"
 
@@ -110,6 +110,7 @@ const Ipa = () => {
   }
 
   createEffect(() => {
+    if (!isFileDownloadEnabled()) return
     const url = sourceLink()
     setShortLink("")
     setQrOpen(false)
@@ -152,40 +153,45 @@ const Ipa = () => {
         >
           {t(`home.preview.${trInstalling() ? "tr-installing" : "tr-install"}`)}
         </Button>
-        <Button
-          as="a"
-          href={shortLink() || undefined}
-          target="_blank"
-          disabled={!shortLink()}
-        >
-          {t("home.preview.download")}
-        </Button>
-        <ButtonGroup colorScheme="accent" attached>
-          <Button onClick={copyShortLink}>
-            {t("home.toolbar.copy_link")}
+        <Show when={isFileDownloadEnabled()}>
+          <Button
+            as="a"
+            href={shortLink() || undefined}
+            target="_blank"
+            disabled={!shortLink()}
+          >
+            {t("home.preview.download")}
           </Button>
-          <Popover opened={qrOpen()} motionPreset="none">
-            <PopoverTrigger
-              as={IconButton}
-              icon={<BsQrCode />}
-              aria-label="QRCode"
-              onClick={toggleQRCode}
-            />
-            <PopoverContent width="fit-content">
-              <PopoverArrow />
-              <PopoverBody>
-                <Image
-                  maxWidth="300px"
-                  src={qrUrl()}
-                  alt="QR Code of download link"
-                  objectFit="cover"
-                />
-              </PopoverBody>
-            </PopoverContent>
-          </Popover>
-        </ButtonGroup>
+          <ButtonGroup colorScheme="accent" attached>
+            <Button onClick={copyShortLink}>
+              {t("home.toolbar.copy_link")}
+            </Button>
+            <Popover opened={qrOpen()} motionPreset="none">
+              <PopoverTrigger
+                as={IconButton}
+                icon={<BsQrCode />}
+                aria-label="QRCode"
+                onClick={toggleQRCode}
+              />
+              <PopoverContent width="fit-content">
+                <PopoverArrow />
+                <PopoverBody>
+                  <Image
+                    maxWidth="300px"
+                    src={qrUrl()}
+                    alt="QR Code of download link"
+                    objectFit="cover"
+                  />
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+          </ButtonGroup>
+        </Show>
       </HStack>
-      <Modal opened={shortLinkOpen()} onClose={() => setShortLinkOpen(false)}>
+      <Modal
+        opened={isFileDownloadEnabled() && shortLinkOpen()}
+        onClose={() => setShortLinkOpen(false)}
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
