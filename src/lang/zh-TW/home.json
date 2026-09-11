@@ -93,6 +93,7 @@
     "preview_page": "預覽頁面",
     "down_link": "下載鏈接",
     "encode_down_link": "編碼下載鏈接",
+    "no_actions": "無可用",
     "mkdir": "新建文件夾",
     "input_dir_name": "輸入文件夾名稱",
     "new_file": "新建文件",

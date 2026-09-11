@@ -93,6 +93,7 @@
     "preview_page": "预览页面",
     "down_link": "下载链接",
     "encode_down_link": "编码下载链接",
+    "no_actions": "无可用",
     "mkdir": "新建文件夹",
     "input_dir_name": "输入文件夹名称",
     "new_file": "新建文件",

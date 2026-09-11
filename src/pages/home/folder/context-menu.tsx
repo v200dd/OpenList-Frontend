@@ -56,6 +56,39 @@ export const ContextMenu = () => {
     return getPreviews({ ...obj, provider: objStore.provider })
     // .filter((p) => p.key !== "download")
   })
+  const hasContextActions = createMemo(() => {
+    const objs = selectedObjs()
+    const canWrite = !isShare() && objStore.write
+    if (openWithPreviews().length > 0) return true
+    if (
+      canWrite &&
+      ["rename", "move", "copy", "delete"].some((name) => userCan(name))
+    ) {
+      return true
+    }
+    if (!isShare() && userCan("share")) return true
+    if (
+      canWrite &&
+      userCan("decompress") &&
+      objs.length > 0 &&
+      objs.every((o) => !o.is_dir && isArchive(o.name))
+    ) {
+      return true
+    }
+    if (
+      canWrite &&
+      userCan("offline_download") &&
+      oneChecked() &&
+      objs.every(
+        (o) => !o.is_dir && o.name.toLowerCase().endsWith(".torrent"),
+      )
+    ) {
+      return true
+    }
+    if (isFileDownloadEnabled() && haveSelected()) return true
+    if (oneChecked() && objs[0]?.type === ObjType.VIDEO) return true
+    return false
+  })
   return (
     <Menu
       id={1}
@@ -63,6 +96,12 @@ export const ContextMenu = () => {
       theme={colorMode() !== "dark" ? "light" : "dark"}
       style="z-index: var(--hope-zIndices-popover)"
     >
+      <Item
+        hidden={() => hasContextActions()}
+        onClick={() => undefined}
+      >
+        <Text color="$neutral9">{t("home.toolbar.no_actions")}</Text>
+      </Item>
       <Show when={openWithPreviews().length > 0}>
         <Submenu label={<ItemContent name="open_with" />}>
           <For each={openWithPreviews()}>
