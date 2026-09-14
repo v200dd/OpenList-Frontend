@@ -1,9 +1,10 @@
-import { objStore, selectedObjs, State, me } from "~/store"
+import { getSetting, objStore, selectedObjs, State, me } from "~/store"
 import { Obj, ArchiveObj } from "~/types"
 import {
   base_path,
   api,
   encodePath,
+  notify,
   pathDir,
   pathJoin,
   standardizePath,
@@ -97,12 +98,34 @@ export const useLink = () => {
   }
 }
 
+const createShortLink = async (url: string) => {
+  const shortLinkAPI = getSetting("short_link_api").trim()
+  if (!shortLinkAPI) {
+    return url
+  }
+  const response = await fetch(shortLinkAPI, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url }),
+  })
+  const body: { link?: string; message?: string } = await response.json()
+  if (!response.ok || !body.link) {
+    throw new Error(body.message || "Failed to create short link")
+  }
+  return body.link
+}
+
 export const useSelectedLink = () => {
   const { previewPage, rawLink: rawUrl } = useLink()
   const rawLinks = (encodeAll?: boolean) => {
     return selectedObjs()
       .filter((obj) => !obj.is_dir)
       .map((obj) => rawUrl(obj, encodeAll))
+  }
+  const selectedLinks = () => {
+    return selectedObjs().map((obj) =>
+      obj.is_dir ? previewPage(obj, true) : rawUrl(obj, true),
+    )
   }
   return {
     rawLinks: rawLinks,
@@ -114,12 +137,16 @@ export const useSelectedLink = () => {
     rawLinksText: (encodeAll?: boolean) => {
       return rawLinks(encodeAll).join("\n")
     },
+    shortLinksText: async () => {
+      const links = await Promise.all(selectedLinks().map(createShortLink))
+      return links.join("\n")
+    },
   }
 }
 
 export const useCopyLink = () => {
   const { copy } = useUtil()
-  const { previewPagesText, rawLinksText } = useSelectedLink()
+  const { previewPagesText, rawLinksText, shortLinksText } = useSelectedLink()
   const { currentObjLink } = useLink()
   return {
     copySelectedPreviewPage: () => {
@@ -127,6 +154,17 @@ export const useCopyLink = () => {
     },
     copySelectedRawLink: (encodeAll?: boolean) => {
       copy(rawLinksText(encodeAll))
+    },
+    copySelectedShortLink: async () => {
+      try {
+        await copy(await shortLinksText())
+      } catch (error) {
+        notify.error(
+          error instanceof Error
+            ? error.message
+            : "Failed to create short link",
+        )
+      }
     },
     copyCurrentRawLink: (encodeAll?: boolean) => {
       copy(currentObjLink(encodeAll))

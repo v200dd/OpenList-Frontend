@@ -40,7 +40,11 @@ const ItemContent = (props: { name: string }) => {
 export const ContextMenu = () => {
   const t = useT()
   const { colorMode } = useColorMode()
-  const { copySelectedRawLink, copySelectedPreviewPage } = useCopyLink()
+  const {
+    copySelectedPreviewPage,
+    copySelectedRawLink,
+    copySelectedShortLink,
+  } = useCopyLink()
   const { batchDownloadSelected, sendToAria2, playlistDownloadSelected } =
     useDownload()
   const canPackageDownload = () => {
@@ -201,12 +205,8 @@ export const ContextMenu = () => {
       <Show when={oneChecked()}>
         <Item
           hidden={() => !isFileDownloadEnabled()}
-          onClick={({ props }) => {
-            if (props.is_dir) {
-              copySelectedPreviewPage()
-            } else {
-              copySelectedRawLink(true)
-            }
+          onClick={() => {
+            void copySelectedShortLink()
           }}
         >
           <ItemContent name="copy_link" />
