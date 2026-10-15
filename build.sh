@@ -115,7 +115,7 @@ validate_git_tag() {
 # Fallback to default git tag for development builds
 fallback_git_tag() {
     git tag -d edge >/dev/null 2>&1 || true
-    git_version=$(git describe --abbrev=0 --tags 2>/dev/null || echo "v0.0.0")
+    git_version=$(git describe --abbrev=0 --tags --match 'v[0-9]*' 2>/dev/null || echo "v0.0.0")
     git_version_clean=${git_version#v}
     git_version_clean=${git_version_clean%%-*}
 }

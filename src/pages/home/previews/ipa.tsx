@@ -86,7 +86,9 @@ const Ipa = () => {
       }
       setShortLinkOpen(true)
     } catch (error) {
-      notify.error(error instanceof Error ? error.message : "Failed to create short link")
+      notify.error(
+        error instanceof Error ? error.message : "Failed to create short link",
+      )
     }
   }
 
@@ -105,7 +107,9 @@ const Ipa = () => {
       )
       setQrOpen(true)
     } catch (error) {
-      notify.error(error instanceof Error ? error.message : "Failed to create short link")
+      notify.error(
+        error instanceof Error ? error.message : "Failed to create short link",
+      )
     }
   }
 

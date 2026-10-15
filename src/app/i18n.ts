@@ -22,7 +22,9 @@ const hasMigratedLanguage = localStorage.getItem("language-migration-v1")
 // Earlier custom builds only shipped English and stored it as the language.
 // Reset that automatic choice once after Chinese translations are restored.
 export let initialLang =
-  savedLang === "en" && !hasMigratedLanguage ? defaultLang : savedLang ?? defaultLang
+  savedLang === "en" && !hasMigratedLanguage
+    ? defaultLang
+    : (savedLang ?? defaultLang)
 
 if (!hasMigratedLanguage) {
   localStorage.setItem("language-migration-v1", "true")

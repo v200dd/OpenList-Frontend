@@ -66,7 +66,9 @@ export const ContextMenu = () => {
     if (openWithPreviews().length > 0) return true
     if (
       canWrite &&
-      ["rename", "move", "copy", "delete"].some((name) => userCan(name))
+      (["rename", "move", "copy", "delete"] as const).some((name) =>
+        userCan(name),
+      )
     ) {
       return true
     }
@@ -83,9 +85,7 @@ export const ContextMenu = () => {
       canWrite &&
       userCan("offline_download") &&
       oneChecked() &&
-      objs.every(
-        (o) => !o.is_dir && o.name.toLowerCase().endsWith(".torrent"),
-      )
+      objs.every((o) => !o.is_dir && o.name.toLowerCase().endsWith(".torrent"))
     ) {
       return true
     }
@@ -100,10 +100,7 @@ export const ContextMenu = () => {
       theme={colorMode() !== "dark" ? "light" : "dark"}
       style="z-index: var(--hope-zIndices-popover)"
     >
-      <Item
-        hidden={() => hasContextActions()}
-        onClick={() => undefined}
-      >
+      <Item hidden={() => hasContextActions()} onClick={() => undefined}>
         <Text color="$neutral9">{t("home.toolbar.no_actions")}</Text>
       </Item>
       <Show when={openWithPreviews().length > 0}>
@@ -270,35 +267,35 @@ export const ContextMenu = () => {
       </Show>
       <Show when={!oneChecked() && haveSelected()}>
         <Show when={isFileDownloadEnabled()}>
-        <Submenu label={<ItemContent name="copy_link" />}>
-          <Item onClick={copySelectedPreviewPage}>
-            {t("home.toolbar.preview_page")}
-          </Item>
-          <Item onClick={() => copySelectedRawLink()}>
-            {t("home.toolbar.down_link")}
-          </Item>
-          <Item onClick={() => copySelectedRawLink(true)}>
-            {t("home.toolbar.encode_down_link")}
-          </Item>
-        </Submenu>
-        <Submenu label={<ItemContent name="download" />}>
-          <Item onClick={batchDownloadSelected}>
-            {t("home.toolbar.batch_download")}
-          </Item>
-          <Show
-            when={
-              UserMethods.is_admin(me()) || getSettingBool("package_download")
-            }
-          >
-            <Item onClick={() => bus.emit("tool", "package_download")}>
-              {t("home.toolbar.package_download")}
+          <Submenu label={<ItemContent name="copy_link" />}>
+            <Item onClick={copySelectedPreviewPage}>
+              {t("home.toolbar.preview_page")}
             </Item>
-            <Item onClick={playlistDownloadSelected}>
-              {t("home.toolbar.playlist_download")}
+            <Item onClick={() => copySelectedRawLink()}>
+              {t("home.toolbar.down_link")}
             </Item>
-          </Show>
-          <Item onClick={sendToAria2}>{t("home.toolbar.send_aria2")}</Item>
-        </Submenu>
+            <Item onClick={() => copySelectedRawLink(true)}>
+              {t("home.toolbar.encode_down_link")}
+            </Item>
+          </Submenu>
+          <Submenu label={<ItemContent name="download" />}>
+            <Item onClick={batchDownloadSelected}>
+              {t("home.toolbar.batch_download")}
+            </Item>
+            <Show
+              when={
+                UserMethods.is_admin(me()) || getSettingBool("package_download")
+              }
+            >
+              <Item onClick={() => bus.emit("tool", "package_download")}>
+                {t("home.toolbar.package_download")}
+              </Item>
+              <Item onClick={playlistDownloadSelected}>
+                {t("home.toolbar.playlist_download")}
+              </Item>
+            </Show>
+            <Item onClick={sendToAria2}>{t("home.toolbar.send_aria2")}</Item>
+          </Submenu>
         </Show>
       </Show>
     </Menu>
