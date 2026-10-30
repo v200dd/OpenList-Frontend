@@ -18,6 +18,7 @@ import type { MediaItem, EpisodeInfo } from "~/types"
 import { getMediaName, parseAuthors, parseEpisodes } from "~/types"
 import { api } from "~/utils"
 import { encodePath } from "~/utils/path"
+import { isFileDownloadEnabled } from "~/store"
 
 // ==================== 书籍阅读器（外层容器） ====================
 const BookReader = (props: {
@@ -129,33 +130,35 @@ const BookReader = (props: {
                 ext: ext().toUpperCase(),
               })}
             </div>
-            <a
-              href={downloadUrl() || "#"}
-              target="_blank"
-              rel="noopener"
-              onClick={async (e) => {
-                e.preventDefault()
-                // 签名直链在打开阅读器时已经预取，正常情况下点击是同步打开，
-                // Safari/部分 Chrome 不会把它判定为“非用户手势”而拦截。
-                // 这里用直链而不是 /p 代理：代理会让大文件流量全部走服务端，
-                // 且 force 参数会阻止 302 到网盘直链。
-                const ready = downloadUrl()
-                if (ready) {
-                  window.open(ready, "_blank", "noopener")
-                  return
-                }
-                // 极端情况下签名还没就绪：退化为当前页跳转，不会被弹窗拦截
-                const resp = await getMediaStreamUrl({ path: resolvedPath() })
-                const url =
-                  resp.code === 200 && resp.data?.url
-                    ? resp.data.url
-                    : `${api}/d${encodePath(resolvedPath())}`
-                location.assign(url)
-              }}
-              style={{ ...mediaPrimaryBtn(), "text-decoration": "none" }}
-            >
-              ⬇ {t("media.book.download_file")}
-            </a>
+            <Show when={isFileDownloadEnabled()}>
+              <a
+                href={downloadUrl() || "#"}
+                target="_blank"
+                rel="noopener"
+                onClick={async (e) => {
+                  e.preventDefault()
+                  // 签名直链在打开阅读器时已经预取，正常情况下点击是同步打开，
+                  // Safari/部分 Chrome 不会把它判定为“非用户手势”而拦截。
+                  // 这里用直链而不是 /p 代理：代理会让大文件流量全部走服务端，
+                  // 且 force 参数会阻止 302 到网盘直链。
+                  const ready = downloadUrl()
+                  if (ready) {
+                    window.open(ready, "_blank", "noopener")
+                    return
+                  }
+                  // 极端情况下签名还没就绪：退化为当前页跳转，不会被弹窗拦截
+                  const resp = await getMediaStreamUrl({ path: resolvedPath() })
+                  const url =
+                    resp.code === 200 && resp.data?.url
+                      ? resp.data.url
+                      : `${api}/d${encodePath(resolvedPath())}`
+                  location.assign(url)
+                }}
+                style={{ ...mediaPrimaryBtn(), "text-decoration": "none" }}
+              >
+                ⬇ {t("media.book.download_file")}
+              </a>
+            </Show>
           </div>
         </Show>
       </div>

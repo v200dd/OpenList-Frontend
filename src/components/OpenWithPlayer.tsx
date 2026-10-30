@@ -6,11 +6,12 @@ import {
   MenuItem,
   MenuTrigger,
 } from "@hope-ui/solid"
-import { For, createSignal } from "solid-js"
+import { For, Show, createSignal } from "solid-js"
 import { FaSolidAngleDown } from "solid-icons/fa"
 import { getPlatform, notify } from "~/utils"
 import { getMediaStreamUrl } from "~/utils/media_api"
 import { playersForPlatform, renderPlayerScheme } from "~/utils/players"
+import { isFileDownloadEnabled } from "~/store"
 
 interface OpenWithPlayerProps {
   /** 媒体条目 id（与 path 二选一） */
@@ -147,7 +148,9 @@ export const OpenWithPlayer = (props: OpenWithPlayerProps) => {
         <For each={players()}>
           {(p) => <MenuItem onClick={() => open(p.scheme)}>{p.name}</MenuItem>}
         </For>
-        <MenuItem onClick={copyLink}>复制直链</MenuItem>
+        <Show when={isFileDownloadEnabled()}>
+          <MenuItem onClick={copyLink}>复制直链</MenuItem>
+        </Show>
       </MenuContent>
     </Menu>
   )

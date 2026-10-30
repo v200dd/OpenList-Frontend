@@ -36,6 +36,7 @@ import { base_path, ext, notify } from "~/utils"
 import { useT } from "~/hooks"
 import { OpenWithPlayer } from "~/components/OpenWithPlayer"
 import { MediaPlayButton } from "~/components/MediaPlayButton"
+import { isFileDownloadEnabled } from "~/store"
 import Artplayer from "artplayer"
 import artplayerProxyMediabunny from "~/components/artplayer-proxy-mediabunny"
 import { attachMediabunnyAudio } from "~/components/artplayer-proxy-mediabunny/AudioPatch"
@@ -1156,12 +1157,14 @@ const VideoDetail = (props: { id: string; onBack: () => void }) => {
                         setShowPlayer(true)
                       }}
                     />
-                    <button
-                      onClick={() => downloadStrm(data())}
-                      style={mediaSecondaryBtn(isDark())}
-                    >
-                      下载 STRM
-                    </button>
+                    <Show when={isFileDownloadEnabled()}>
+                      <button
+                        onClick={() => downloadStrm(data())}
+                        style={mediaSecondaryBtn(isDark())}
+                      >
+                        下载 STRM
+                      </button>
+                    </Show>
                   </div>
                 </Show>
 
