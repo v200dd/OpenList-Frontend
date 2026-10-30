@@ -110,32 +110,43 @@
   },
   "139Yun": {
     "authorization": "授權",
+    "authorization-tips": "授權可單獨使用。若留空，則單獨使用 mail_cookies 以快速登入，或使用 mail_cookies + username + password 作為完整登入的備援方式。",
+    "client_type": "客戶端類型",
+    "client_type-tips": "向個人雲端 API 回報的客戶端類型。web（9）允許上傳最大 50 GB 的檔案；pc（13）則將單一檔案的上傳限制提高至 500 GB。",
+    "client_types": {
+      "pc": "PC",
+      "web": "網頁"
+    },
     "cloud_id": "Cloud ID",
     "custom_upload_part_size": "自定義上傳分片大小",
     "custom_upload_part_size-tips": "0 為自動設置",
-    "link_id": "Link id",
-    "link_id-tips": "Multiple shares are separated by commas or new lines. Use link_id#password for password-protected shares.",
+    "link_id": "連結 ID",
+    "link_id-tips": "多個分享連結請以逗號或換行分隔。受密碼保護的分享連結請使用 link_id#password。",
     "mail_cookies": "郵箱 Cookie",
     "mail_cookies-tips": "mail.139.com 的 Cookie（用於登錄認證）。",
     "password": "密碼",
+    "password-tips": "僅在使用搭配 mail_cookies 的密碼登入備援方式時需要。",
     "report_real_size": "報告真實大小",
     "report_real_size-tips": "啓用在上傳時報告真實文件大小",
     "root_folder_id": "根文件夾 ID",
+    "sms_code": "簡訊驗證碼",
+    "sms_code-tips": "僅在 OpenList 回報已傳送 139 郵箱簡訊驗證碼後填寫，然後再次儲存儲存體。",
     "type": "類型",
     "types": {
       "family": "家庭雲",
       "group": "共享羣",
       "personal": "個人雲",
       "personal_new": "新的個人盤",
-      "share": "Share"
+      "share": "分享"
     },
     "use_large_thumbnail": "使用大縮略圖",
     "use_large_thumbnail-tips": "啓用圖片使用大縮略圖",
-    "use_old_stream_upload": "Use old stream upload",
-    "use_old_stream_upload-tips": "Enable to use old stream upload method (not support rapid upload)",
+    "use_old_stream_upload": "使用舊版串流上傳",
+    "use_old_stream_upload-tips": "啟用後使用舊版串流上傳方法（不支援快速上傳）",
     "user_domain_id": "用户域 ID",
     "user_domain_id-tips": "Cookie中的ud_id項，需要查看空間使用情況則填寫",
-    "username": "用户名"
+    "username": "用户名",
+    "username-tips": "僅在使用搭配 mail_cookies 的密碼登入備援方式時需要。"
   },
   "189Cloud": {
     "cookie": "Cookie",
@@ -146,10 +157,16 @@
   },
   "189CloudPC": {
     "access_token": "訪問令牌",
+    "client_sn": "客戶端 SN",
+    "client_sn-tips": "從官方客戶端取得的裝置序號，若沒有則留空",
+    "device_id": "裝置 ID",
+    "device_id-tips": "第二次裝置驗證後簽發的 DEVICEID Cookie，保留此 Cookie 可避免再次驗證",
     "family_id": "家庭 ID",
     "family_transfer": "家庭傳輸",
     "generate_torrent": "生成種子",
     "generate_torrent-tips": "上傳後生成帶有 CAS 的 Torrent 文件",
+    "jg_open_id": "JG 開放 ID",
+    "jg_open_id-tips": "官方客戶端回報的選用推送 ID",
     "login_type": "登錄類型",
     "login_types": {
       "password": "密碼",
@@ -168,10 +185,13 @@
       "desc": "降序"
     },
     "password": "密碼",
+    "password-tips": "提供存取權杖或重新整理權杖時不需要",
     "rapid_upload": "秒傳",
     "refresh_token": "刷新令牌",
     "refresh_token-tips": "如要切換帳户，請清除此字段",
     "root_folder_id": "根文件夾 ID",
+    "sms_code": "簡訊驗證碼",
+    "sms_code-tips": "用於第二次裝置驗證的簡訊驗證碼，登入要求輸入時填寫並再次儲存",
     "type": "類型",
     "types": {
       "family": "家庭雲",
@@ -185,7 +205,10 @@
     },
     "upload_thread": "上傳線程",
     "upload_thread-tips": "1 ≤ 線程 ≤ 32",
+    "user_finger": "使用者指紋",
+    "user_finger-tips": "隨登入請求傳送的裝置指紋，留空時會自動產生並保留",
     "username": "用户名",
+    "username-tips": "提供存取權杖或重新整理權杖時不需要",
     "validate_code": "驗證碼"
   },
   "189CloudTV": {
@@ -225,7 +248,7 @@
   },
   "AliDoc": {
     "cookie": "Cookie",
-    "cookie-tips": "DingTalk document web cookie",
+    "cookie-tips": "釘釘文件網頁 Cookie",
     "root_folder_id": "Root folder id"
   },
   "Alias": {
@@ -292,6 +315,8 @@
       "default": "默認"
     },
     "api_url_address": "API 地址",
+    "callback_concurrency": "回呼並行數",
+    "callback_concurrency-tips": "由阿里雲使用者共用的代理下載最大活動數量",
     "client_id": "客户端 ID",
     "client_id-tips": "如果你沒有，請留空",
     "client_secret": "客户端密鑰",
@@ -422,20 +447,20 @@
     "upload_thread-tips": "1 ≤ 線程 ≤ 32"
   },
   "Bunny Storage": {
-    "access_key": "Access key",
-    "cdn_base_url": "Cdn base url",
-    "cdn_token_include_ip": "Cdn token include ip",
-    "cdn_token_key": "Cdn token key",
-    "cdn_token_method": "Cdn token method",
+    "access_key": "存取金鑰",
+    "cdn_base_url": "CDN 基礎 URL",
+    "cdn_token_include_ip": "CDN 權杖包含 IP",
+    "cdn_token_key": "CDN 權杖金鑰",
+    "cdn_token_method": "CDN 權杖方法",
     "cdn_token_methods": {
-      "hmac_sha256": "Hmac sha256",
-      "sha256": "Sha256"
+      "hmac_sha256": "HMAC SHA256",
+      "sha256": "SHA256"
     },
-    "endpoint": "Endpoint",
-    "placeholder": "Placeholder",
-    "root_folder_path": "Root folder path",
-    "sign_url_expire": "Sign url expire",
-    "storage_zone_name": "Storage zone name"
+    "endpoint": "端點",
+    "placeholder": "預留位置",
+    "root_folder_path": "根資料夾路徑",
+    "sign_url_expire": "簽署 URL 有效期限",
+    "storage_zone_name": "儲存區域名稱"
   },
   "CNB Releases": {
     "default_branch": "默認分支",
@@ -535,6 +560,30 @@
     "thumbnail": "縮略圖",
     "thumbnail-tips": "啓用在縮略圖文件夾下預先生成的縮略圖"
   },
+  "CtFile": {
+    "session": "Session",
+    "session-tips": "OpenAPI session token from CtFile console → 开放接口登录密钥管理",
+    "cloud_type": "Cloud type",
+    "cloud_types": {
+      "public": "Public",
+      "private": "Private"
+    },
+    "base_url": "Base URL",
+    "base_url-tips": "API base URL, default https://rest.ctfile.com/v1",
+    "order_by": "Order by",
+    "order_bys": {
+      "name": "Name",
+      "size": "Size",
+      "time": "Time"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "user_agent": "User agent",
+    "root_folder_id": "Root folder id"
+  },
   "Degoo": {
     "access_token": "訪問令牌",
     "access_token-tips": "Degoo API 訪問令牌，自動獲取",
@@ -570,8 +619,8 @@
     "secret_access_key": "訪問密鑰",
     "session_token": "會話令牌",
     "sign_url_expire": "簽名鏈接有效期",
-    "user_agent": "User agent",
-    "user_agent-tips": "Custom User-Agent for S3 requests."
+    "user_agent": "使用者代理程式",
+    "user_agent-tips": "用於 S3 請求的自訂 User-Agent。"
   },
   "Doubao": {
     "cookie": "Cookie",
@@ -673,6 +722,8 @@
     "username": "用户名"
   },
   "GitHub API": {
+    "accurate_modified_time": "精確的修改時間",
+    "accurate_modified_time-tips": "針對小型目錄清單盡力取得精確的修改時間。預設停用。會額外發出一個 GitHub GraphQL 請求，失敗時則回退至傳統的零時間值。",
     "author_email": "提交作者電子郵件",
     "author_name": "提交作者姓名",
     "committer_email": "提交者電子郵件",
@@ -697,10 +748,10 @@
   "GitHub Releases": {
     "gh_proxy": "Gh 代理",
     "gh_proxy-tips": "GitHub 代理，例如：https://ghproxy.net/github.com 或 https://gh-proxy.com/github.com ",
-    "max_page": "Max page",
-    "max_page-tips": "max pages to fetch (0 = unlimited), only works when show all versions",
-    "per_page": "Per page",
-    "per_page-tips": "releases per page (max 100), only works when show all versions",
+    "max_page": "最大頁數",
+    "max_page-tips": "要擷取的最大頁數（0 = 無限制），僅在顯示所有版本時有效",
+    "per_page": "每頁數量",
+    "per_page-tips": "每頁的版本數量（最大 100），僅在顯示所有版本時有效",
     "repo_structure": "倉庫結構",
     "repo_structure-tips": "結構：[path：]org/repo",
     "root_folder_path": "根文件夾路徑",
@@ -739,33 +790,33 @@
     "show_archive": "顯示檔案"
   },
   "GuangYaPan": {
-    "access_token": "Access token",
-    "access_token-tips": "Bearer access token (optional if refresh_token is provided)",
-    "captcha_token": "Captcha token",
-    "captcha_token-tips": "Captcha token required by /v1/auth/verification",
-    "client_id": "Client id",
-    "client_id-tips": "Client ID for GuangYaPan API, must be provided",
-    "device_id": "Device id",
-    "device_id-tips": "Optional custom device id (32 hex chars), auto-generated when empty",
-    "device_sign": "Device sign",
-    "device_sign-tips": "Optional custom X-Device-Sign header (generated from device_id when empty)",
-    "order_by": "Order by",
-    "order_by-tips": "Sort field used by the file list",
-    "page_size": "Page size",
-    "phone_number": "Phone number",
-    "phone_number-tips": "Phone number for SMS login, e.g. +86 13800000000",
-    "refresh_token": "Refresh token",
-    "refresh_token-tips": "Refresh token for auto-login/auto-refresh",
-    "root_path": "Root path",
-    "root_path-tips": "Full path in GuangYaPan cloud drive",
-    "send_code": "Send code",
-    "send_code-tips": "Set true and save to send SMS code, it auto-resets to false after sending",
-    "sort_type": "Sort type",
-    "sort_type-tips": "Sort direction used by the file list",
-    "verification_id": "Verification id",
-    "verification_id-tips": "Auto-generated after sending SMS code; do not edit manually",
-    "verify_code": "Verify code",
-    "verify_code-tips": "SMS verification code used with phone_number; fill then save to finish login"
+    "access_token": "存取權杖",
+    "access_token-tips": "Bearer 存取權杖（提供 refresh_token 時可選）",
+    "captcha_token": "驗證碼權杖",
+    "captcha_token-tips": "/v1/auth/verification 所需的驗證碼權杖",
+    "client_id": "用戶端 ID",
+    "client_id-tips": "GuangYaPan API 的用戶端 ID，必須提供",
+    "device_id": "裝置 ID",
+    "device_id-tips": "可選的自訂裝置 ID（32 個十六進位字元），留空時會自動產生",
+    "device_sign": "裝置簽名",
+    "device_sign-tips": "可選的自訂 X-Device-Sign 標頭（留空時會根據 device_id 產生）",
+    "order_by": "排序依據",
+    "order_by-tips": "檔案清單使用的排序欄位",
+    "page_size": "頁面大小",
+    "phone_number": "電話號碼",
+    "phone_number-tips": "用於簡訊登入的電話號碼，例如 +86 13800000000",
+    "refresh_token": "重新整理權杖",
+    "refresh_token-tips": "用於自動登入／自動更新的重新整理權杖",
+    "root_path": "根路徑",
+    "root_path-tips": "GuangYaPan 雲端硬碟中的完整路徑",
+    "send_code": "傳送驗證碼",
+    "send_code-tips": "設為 true 並儲存以傳送簡訊驗證碼，傳送後會自動重設為 false",
+    "sort_type": "排序類型",
+    "sort_type-tips": "檔案清單使用的排序方向",
+    "verification_id": "驗證 ID",
+    "verification_id-tips": "傳送簡訊驗證碼後自動產生；請勿手動編輯",
+    "verify_code": "驗證碼",
+    "verify_code-tips": "與 phone_number 搭配使用的簡訊驗證碼；填寫後儲存即可完成登入"
   },
   "HalalCloud": {
     "app_id": "應用 ID",
@@ -847,6 +898,8 @@
     "directory_size": "目錄大小",
     "directory_size-tips": "這可能會影響主機的性能",
     "mkdir_perm": "創建文件夾權限",
+    "pdf_thumbnail": "PDF 縮圖",
+    "pdf_thumbnail-tips": "在 macOS 上使用 Quick Look 產生 PDF 第一頁縮圖",
     "recycle_bin_path": "回收站路徑",
     "recycle_bin_path-tips": "回收站的路徑，如果空或保留“永久刪除”則永久刪除",
     "root_folder_path": "根文件夾路徑",
@@ -1021,6 +1074,8 @@
     },
     "refresh_token": "刷新令牌",
     "root_folder_id": "根文件夾 ID",
+    "skip_verification": "跳過驗證",
+    "skip_verification-tips": "忽略驗證碼 API 回傳的人機驗證 URL，而不是使操作失敗；啟用此選項可能觸發 PikPak 風控",
     "username": "用户名"
   },
   "PikPakShare": {
@@ -1134,8 +1189,8 @@
     "secret_access_key": "訪問密鑰",
     "session_token": "會話令牌",
     "sign_url_expire": "簽名鏈接有效期",
-    "user_agent": "User agent",
-    "user_agent-tips": "Custom User-Agent for S3 requests."
+    "user_agent": "使用者代理程式",
+    "user_agent-tips": "用於 S3 請求的自訂 User-Agent。"
   },
   "SFTP": {
     "address": "地址",
@@ -1184,6 +1239,8 @@
     "encodePath-tips": "在 Strm 文件中編碼路徑",
     "filterFileTypes": "過濾文件類型",
     "filterFileTypes-tips": "支持 Strm 文件的後綴名",
+    "minFileSize": "最小檔案大小",
+    "minFileSize-tips": "篩除小於此大小的檔案（單位：MB，設為 0 可停用）",
     "paths": "路徑",
     "siteUrl": "站點 URL",
     "siteUrl-tips": "Strm 文件的前綴 URL",
@@ -1506,9 +1563,11 @@
   },
   "WoPan": {
     "access_token": "訪問令牌",
+    "access_token-tips": "提供重新整理權杖時可選；缺少或過短時會自動重新整理",
     "family_id": "家庭 ID",
     "family_id-tips": "如果您想要使用您的個人空間，請保持為空",
     "refresh_token": "刷新令牌",
+    "refresh_token-tips": "請提供重新整理權杖或存取權杖（至少 16 個字元）",
     "root_folder_id": "根文件夾 ID",
     "sort_rule": "排序規則",
     "sort_rules": {
@@ -1542,27 +1601,27 @@
     "use_online_api": "使用在線 API"
   },
   "cloudflare_imgbed": {
-    "address": "Address",
-    "address-tips": "Backend API address of the image hosting service, e.g., https://img.example.com",
-    "largeChannelName": "LargeChannelName",
-    "largeChannelName-tips": "Channel name for large files",
-    "largeChannelType": "LargeChannelType",
-    "largeChannelType-tips": "Large File Channel Type: Hugging Face (Direct Upload)、telegram/cfr2/s3/discord(Multipart Upload)",
+    "address": "位址",
+    "address-tips": "圖片託管服務的後端 API 位址，例如：https://img.example.com",
+    "largeChannelName": "大型檔案頻道名稱",
+    "largeChannelName-tips": "大型檔案的頻道名稱",
+    "largeChannelType": "大型檔案頻道類型",
+    "largeChannelType-tips": "大型檔案頻道類型：Hugging Face（直接上傳）、telegram/cfr2/s3/discord（分段上傳）",
     "largeChannelTypes": {
       "": "",
       "cfr2": "Cfr2",
       "discord": "Discord",
-      "huggingface": "Huggingface",
+      "huggingface": "Hugging Face",
       "s3": "S3",
       "telegram": "Telegram"
     },
-    "root_folder_path": "Root folder path",
-    "smallChannelName": "SmallChannelName",
-    "smallChannelName-tips": "Channel name for regular files (typically <20MB)",
-    "token": "Token",
-    "token-tips": "Authentication Token",
-    "uploadThread": "UploadThread",
-    "uploadThread-tips": "Concurrent thread count for HuggingFace chunked direct upload"
+    "root_folder_path": "根資料夾路徑",
+    "smallChannelName": "一般檔案頻道名稱",
+    "smallChannelName-tips": "一般檔案的頻道名稱（通常小於 <20MB）",
+    "token": "權杖",
+    "token-tips": "驗證權杖",
+    "uploadThread": "上傳執行緒",
+    "uploadThread-tips": "HuggingFace 分塊直接上傳的並行執行緒數量"
   },
   "config": {
     "115 Cloud": {},
@@ -1580,7 +1639,7 @@
     "189CloudTV": {},
     "AList V3": {},
     "AliDoc": {
-      "alert": "This driver supports accessing DingDrive through DingTalk Docs and is currently read-only."
+      "alert": "此驅動程式支援透過釘釘文件存取釘盤，目前僅支援讀取。"
     },
     "Alias": {},
     "Aliyundrive": {
@@ -1599,6 +1658,7 @@
     "Cloudreve": {},
     "Cloudreve V4": {},
     "Crypt": {},
+    "CtFile": {},
     "Degoo": {},
     "Doge": {},
     "Doubao": {},
@@ -1616,7 +1676,7 @@
     "GoogleDrive": {},
     "GooglePhoto": {},
     "GuangYaPan": {
-      "alert": "Two-stage SMS login: (1) fill phone_number (+ captcha_token if needed), set send_code=true and save; (2) fill verify_code and save to finish login and auto-save access_token/refresh_token."
+      "alert": "兩階段簡訊登入：（1）填寫 phone_number（如有需要也填寫 captcha_token），將 send_code 設為 true 並儲存；（2）填寫 verify_code 並儲存，以完成登入並自動儲存 access_token／refresh_token。"
     },
     "HalalCloud": {},
     "HalalCloudOpen": {},
@@ -1700,6 +1760,7 @@
     "Cloudreve": "Cloudreve",
     "Cloudreve V4": "Cloudreve V4",
     "Crypt": "Crypt",
+    "CtFile": "CtFile",
     "Degoo": "Degoo",
     "Doge": "多吉雲",
     "Doubao": "豆包",
@@ -1764,6 +1825,6 @@
     "WeiYun": "騰訊微雲",
     "WoPan": "聯通雲盤",
     "YandexDisk": "Yandex 網盤",
-    "cloudflare_imgbed": "Cloudflare imgbed"
+    "cloudflare_imgbed": "Cloudflare 圖床"
   }
 }
