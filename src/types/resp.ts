@@ -20,6 +20,7 @@ export type FsListResp = Resp<{
   write_content_bypass: boolean
   provider: string
   direct_upload_tools?: string[]
+  enable_file_download?: boolean
 }>
 
 export type SearchNode = {
@@ -40,6 +41,7 @@ export type FsGetResp = Resp<
     header: string
     provider: string
     related: Obj[]
+    enable_file_download?: boolean
   }
 >
 

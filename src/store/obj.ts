@@ -29,6 +29,7 @@ const initialObjStore = {
   header: "",
   provider: "",
   direct_upload_tools: <string[] | undefined>undefined,
+  enable_file_download: <boolean | undefined>undefined,
   state: State.Initial,
   err: "",
 }
@@ -67,6 +68,8 @@ export const ObjStore = {
   setHeader: (header: string) => setObjStore("header", header),
   setRelated: (related: Obj[]) => setObjStore("related", related),
   setWrite: (write: boolean) => setObjStore("write", write),
+  setFileDownloadEnabled: (enabled?: boolean) =>
+    setObjStore("enable_file_download", enabled),
   setWriteContentBypass: (write_content_bypass: boolean) =>
     setObjStore("write_content_bypass", write_content_bypass),
   // setGetResp: (resp: FsGetResp) => {

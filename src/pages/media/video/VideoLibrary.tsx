@@ -36,7 +36,7 @@ import { base_path, ext, notify } from "~/utils"
 import { useT } from "~/hooks"
 import { OpenWithPlayer } from "~/components/OpenWithPlayer"
 import { MediaPlayButton } from "~/components/MediaPlayButton"
-import { isFileDownloadEnabled } from "~/store"
+import { createFileDownloadEnabled } from "~/utils/file_download_resource"
 import Artplayer from "artplayer"
 import artplayerProxyMediabunny from "~/components/artplayer-proxy-mediabunny"
 import { attachMediabunnyAudio } from "~/components/artplayer-proxy-mediabunny/AudioPatch"
@@ -817,6 +817,11 @@ const VideoDetail = (props: { id: string; onBack: () => void }) => {
     },
   )
 
+  const downloadEnabled = createFileDownloadEnabled(() => {
+    const current = item()
+    return current ? mediaItemPath(current) : undefined
+  })
+
   const [showPlayer, setShowPlayer] = createSignal(false)
   // 当前播放的选集（null 表示播放主文件）
   const [currentEpisode, setCurrentEpisode] = createSignal<EpisodeInfo | null>(
@@ -1157,7 +1162,7 @@ const VideoDetail = (props: { id: string; onBack: () => void }) => {
                         setShowPlayer(true)
                       }}
                     />
-                    <Show when={isFileDownloadEnabled()}>
+                    <Show when={downloadEnabled()}>
                       <button
                         onClick={() => downloadStrm(data())}
                         style={mediaSecondaryBtn(isDark())}

@@ -18,7 +18,7 @@ import type { MediaItem, EpisodeInfo } from "~/types"
 import { getMediaName, parseAuthors, parseEpisodes } from "~/types"
 import { api } from "~/utils"
 import { encodePath } from "~/utils/path"
-import { isFileDownloadEnabled } from "~/store"
+import { createFileDownloadEnabled } from "~/utils/file_download_resource"
 
 // ==================== 书籍阅读器（外层容器） ====================
 const BookReader = (props: {
@@ -38,6 +38,7 @@ const BookReader = (props: {
   // 签名 + 编码后的地址；就绪前为 undefined，避免先发出必然 401 的请求。
   // 阅读器读流需要代理地址（跨域 /p），下载用直链（302 到网盘，不占服务端带宽）。
   const signedUrls = createSignedMediaUrls(resolvedPath)
+  const downloadEnabled = createFileDownloadEnabled(resolvedPath)
   const fileUrl = () => signedUrls()?.proxied ?? ""
   const downloadUrl = () => signedUrls()?.direct ?? ""
   const readerTitle = () => props.title ?? getMediaName(props.item)
@@ -130,7 +131,7 @@ const BookReader = (props: {
                 ext: ext().toUpperCase(),
               })}
             </div>
-            <Show when={isFileDownloadEnabled()}>
+            <Show when={downloadEnabled()}>
               <a
                 href={downloadUrl() || "#"}
                 target="_blank"

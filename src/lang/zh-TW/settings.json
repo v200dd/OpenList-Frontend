@@ -331,7 +331,7 @@
   "video_types": "影片類型",
   "webauthn_login_enabled": "啟用 WebAuthn 登入",
   "enable_file_download": "允許下載和複製連結",
-  "enable_file_download-tips": "關閉後隱藏下載、複製連結、二維碼，以及右鍵選單中的同類選項",
+  "enable_file_download-tips": "預設顯示下載、複製連結、二維碼與對應右鍵選單；中繼資料可按資料夾覆蓋，管理員始終開啟。",
   "short_link_api": "短連結介面",
   "short_link_api-tips": "POST JSON：{\"url\":\"...\"}；回應 JSON 必須包含 link 欄位"
 }

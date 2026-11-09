@@ -14,5 +14,10 @@
   "header": "顶部说明",
   "header_help": "在顶部渲染 Markdown ，支持内容或链接",
   "apply_sub": "应用到子文件夹",
-  "hide_help": "每行一个正则表达式"
+  "hide_help": "每行一个正则表达式",
+  "download_policy": "下载和复制链接",
+  "download_policy_inherit": "跟随上级／全局默认",
+  "download_policy_enabled": "开启",
+  "download_policy_disabled": "关闭",
+  "download_policy_help": "控制本文件夹的下载、复制链接、二维码和对应右键菜单；勾选后应用到子文件夹。子文件夹可单独覆盖，管理员始终开启，不影响在线预览。"
 }

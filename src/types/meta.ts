@@ -15,4 +15,6 @@ export interface Meta {
   r_sub: boolean
   header: string
   header_sub: boolean
+  download_policy: "inherit" | "enabled" | "disabled"
+  download_sub: boolean
 }

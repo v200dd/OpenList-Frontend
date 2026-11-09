@@ -14,5 +14,10 @@
   "header": "Header",
   "header_help": "Render a markdown at the top, support content or link",
   "apply_sub": "Apply to sub folder",
-  "hide_help": "One regular expression per line"
+  "hide_help": "One regular expression per line",
+  "download_policy": "Download and copy link",
+  "download_policy_inherit": "Inherit parent / global default",
+  "download_policy_enabled": "Enabled",
+  "download_policy_disabled": "Disabled",
+  "download_policy_help": "Controls download, copy-link, QR-code and context-menu entries for this folder. Apply to subfolders optionally; explicit child policies override inherited rules. Administrators are always enabled. Online previews are unchanged."
 }

@@ -1,5 +1,8 @@
 import { ext, recordToArray, strToRegExp } from "~/utils"
 import { setBackendKind } from "~/utils/backend"
+import { resolveFileDownloadEnabled } from "~/utils/file_download"
+import { objStore } from "./obj"
+import { me } from "./user"
 
 const settings: Record<string, string> = {}
 
@@ -23,8 +26,14 @@ export const getSettingBool = (key: string) => {
   const value = getSetting(key)
   return value === "true" || value === "1"
 }
-export const isFileDownloadEnabled = () =>
-  getSetting("enable_file_download") !== "false"
+export const isFileDownloadEnabled = (
+  folderEnabled: boolean | null | undefined = objStore.enable_file_download,
+) =>
+  resolveFileDownloadEnabled(
+    me().role,
+    folderEnabled ?? undefined,
+    getSetting("enable_file_download"),
+  )
 export const getSettingNumber = (key: string, defaultV?: number) => {
   const value = getSetting(key)
   if (value) {

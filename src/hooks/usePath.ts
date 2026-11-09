@@ -128,6 +128,7 @@ export const usePath = () => {
       (data) => {
         ObjStore.setObj(data)
         ObjStore.setProvider(data.provider)
+        ObjStore.setFileDownloadEnabled(data.enable_file_download)
         if (data.is_dir) {
           setPathAs(path)
           handleFolder(path, index)
@@ -177,6 +178,7 @@ export const usePath = () => {
         ObjStore.setReadme(data.readme)
         ObjStore.setHeader(data.header)
         ObjStore.setWrite(data.write)
+        ObjStore.setFileDownloadEnabled(data.enable_file_download)
         ObjStore.setWriteContentBypass(data.write_content_bypass)
         ObjStore.setProvider(data.provider)
         ObjStore.setDirectUploadTools(data.direct_upload_tools)

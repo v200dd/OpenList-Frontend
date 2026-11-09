@@ -38,6 +38,7 @@ type ItemProps = {
   | { type: "text"; value: string; onChange: (val: string) => void }
   | { type: "bool"; value: boolean; onChange: (val: boolean) => void }
   | { type: "users"; value: number[]; onChange: (val: number[]) => void }
+  | { type: "download"; value: string; onChange: (val: string) => void }
 )
 
 const AddOrEdit = () => {
@@ -75,6 +76,27 @@ const AddOrEdit = () => {
               value={props.value}
               onChange={(e) => props.onChange(e.currentTarget.value)}
             />
+          ) : props.type === "download" ? (
+            <Select value={props.value || "inherit"} onChange={props.onChange}>
+              <SelectTrigger id={props.name}>
+                <SelectValue />
+                <SelectIcon />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectListbox>
+                  <For each={["inherit", "enabled", "disabled"]}>
+                    {(policy) => (
+                      <SelectOption value={policy}>
+                        <SelectOptionText>
+                          {t(`metas.download_policy_${policy}`)}
+                        </SelectOptionText>
+                        <SelectOptionIndicator />
+                      </SelectOption>
+                    )}
+                  </For>
+                </SelectListbox>
+              </SelectContent>
+            </Select>
           ) : props.type === "users" ? (
             <Select
               value={props.value}
@@ -142,6 +164,8 @@ const AddOrEdit = () => {
     r_sub: false,
     header: "",
     header_sub: false,
+    download_policy: "inherit",
+    download_sub: false,
   })
   const [metaLoading, loadMeta] = useFetch((): PResp<Meta> =>
     r.get(`/admin/meta/get?id=${id}`),
@@ -210,6 +234,12 @@ const AddOrEdit = () => {
                 help: true,
               },
               { name: "write", type: "bool", sub: "w_sub", help: true },
+              {
+                name: "download_policy",
+                type: "download",
+                sub: "download_sub",
+                help: true,
+              },
               { name: "hide", type: "text", sub: "h_sub", help: true },
               { name: "header", type: "text", sub: "header_sub", help: true },
               { name: "readme", type: "text", sub: "r_sub", help: true },

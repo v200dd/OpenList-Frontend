@@ -14,5 +14,10 @@
   "header": "頂部説明",
   "header_help": "在頂部渲染 Markdown ，支持內容或鏈接",
   "apply_sub": "應用到子文件夾",
-  "hide_help": "每行一個正則表達式"
+  "hide_help": "每行一個正則表達式",
+  "download_policy": "下載和複製連結",
+  "download_policy_inherit": "跟隨上級／全域預設",
+  "download_policy_enabled": "開啟",
+  "download_policy_disabled": "關閉",
+  "download_policy_help": "控制本資料夾的下載、複製連結、二維碼與對應右鍵選單；勾選後套用到子資料夾。子資料夾可單獨覆蓋，管理員始終開啟，不影響線上預覽。"
 }

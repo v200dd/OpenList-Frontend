@@ -11,7 +11,7 @@ import { FaSolidAngleDown } from "solid-icons/fa"
 import { getPlatform, notify } from "~/utils"
 import { getMediaStreamUrl } from "~/utils/media_api"
 import { playersForPlatform, renderPlayerScheme } from "~/utils/players"
-import { isFileDownloadEnabled } from "~/store"
+import { createFileDownloadEnabled } from "~/utils/file_download_resource"
 
 interface OpenWithPlayerProps {
   /** 媒体条目 id（与 path 二选一） */
@@ -37,6 +37,10 @@ export const OpenWithPlayer = (props: OpenWithPlayerProps) => {
   // 提前换取直链：外部协议必须在用户手势内同步触发，
   // 否则 Chrome 会拦截「用户手势已丢失」的自定义 scheme 跳转。
   const [directURL, setDirectURL] = createSignal<string | null>(null)
+  const [resolvedPath, setResolvedPath] = createSignal<string>()
+  const downloadEnabled = createFileDownloadEnabled(
+    () => props.path || resolvedPath(),
+  )
   let prefetching: Promise<string | null> | null = null
   // Emby 深链需要服务器 ID，只在主播放按钮里处理
   const players = () =>
@@ -49,6 +53,7 @@ export const OpenWithPlayer = (props: OpenWithPlayerProps) => {
         notify.error(resp.message || "获取直链失败")
         return null
       }
+      setResolvedPath(resp.data.path)
       return resp.data.url
     }
     if (!props.itemId) {
@@ -63,6 +68,7 @@ export const OpenWithPlayer = (props: OpenWithPlayerProps) => {
       notify.error(resp.message || "获取直链失败")
       return null
     }
+    setResolvedPath(resp.data.path)
     return resp.data.url
   }
 
@@ -107,6 +113,7 @@ export const OpenWithPlayer = (props: OpenWithPlayerProps) => {
   }
 
   const copyLink = async () => {
+    if (!downloadEnabled()) return
     setLoading(true)
     try {
       const url = await resolveURL()
@@ -148,7 +155,7 @@ export const OpenWithPlayer = (props: OpenWithPlayerProps) => {
         <For each={players()}>
           {(p) => <MenuItem onClick={() => open(p.scheme)}>{p.name}</MenuItem>}
         </For>
-        <Show when={isFileDownloadEnabled()}>
+        <Show when={downloadEnabled()}>
           <MenuItem onClick={copyLink}>复制直链</MenuItem>
         </Show>
       </MenuContent>

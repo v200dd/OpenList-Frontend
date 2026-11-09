@@ -331,7 +331,7 @@
   "video_types": "视频类型",
   "webauthn_login_enabled": "启用 WebAuthn 登录",
   "enable_file_download": "允许下载和复制链接",
-  "enable_file_download-tips": "关闭后隐藏下载、复制链接、二维码，以及右键菜单中的同类选项",
+  "enable_file_download-tips": "默认显示下载、复制链接、二维码和对应右键菜单；元信息可按文件夹覆盖，管理员始终开启。",
   "short_link_api": "短链接接口",
   "short_link_api-tips": "POST JSON：{\"url\":\"...\"}；响应 JSON 必须包含 link 字段"
 }

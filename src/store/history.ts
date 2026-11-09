@@ -46,6 +46,8 @@ export const recoverHistory = async (path: string, page?: number) => {
   setGlobalPage(history.page)
   shouldKeepState() || ObjStore.setState(State.Initial)
   await waitForNextFrame()
+  // JSON snapshots omit undefined fields returned by older backends.
+  ObjStore.setFileDownloadEnabled(undefined)
   ObjStore.set(JSON.parse(JSON.stringify(history.obj)))
   await waitForNextFrame()
   window.scroll({ top: history.scroll })
