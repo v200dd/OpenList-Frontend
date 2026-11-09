@@ -65,5 +65,12 @@
     "paste_json": "在此粘贴插件 JSON 数据",
     "import_success": "插件导入成功"
   },
-  "empty_installed": "未安装插件。点击 “安装插件” 上传ZIP 或从 URL 安装。"
+  "empty_installed": "未安装插件。点击 “安装插件” 上传ZIP 或从 URL 安装。",
+  "icon": "插件图标",
+  "root_access": "最高权限访问",
+  "zip_required": "请选择 ZIP 格式的插件压缩包",
+  "zip_parsed": "插件压缩包解析成功",
+  "valid_zip_required": "请先上传有效的插件 ZIP 文件",
+  "manifest_url_required": "请输入插件清单链接",
+  "import_invalid": "JSON 格式无效：应为插件列表数组"
 }

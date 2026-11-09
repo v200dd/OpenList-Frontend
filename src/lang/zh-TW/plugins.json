@@ -65,5 +65,12 @@
     "paste_json": "在此貼上外掛 JSON 資料",
     "import_success": "外掛已成功匯入"
   },
-  "empty_installed": "尚未安裝任何外掛。點擊「安裝外掛」以上傳 ZIP 套件或透過 URL 安裝。"
+  "empty_installed": "尚未安裝任何外掛。點擊「安裝外掛」以上傳 ZIP 套件或透過 URL 安裝。",
+  "icon": "外掛圖示",
+  "root_access": "最高權限存取",
+  "zip_required": "請選擇 ZIP 格式的外掛壓縮檔",
+  "zip_parsed": "外掛壓縮檔解析成功",
+  "valid_zip_required": "請先上傳有效的外掛 ZIP 檔案",
+  "manifest_url_required": "請輸入外掛資訊清單連結",
+  "import_invalid": "JSON 格式無效：應為外掛清單陣列"
 }

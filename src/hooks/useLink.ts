@@ -9,8 +9,9 @@ import {
   pathJoin,
   standardizePath,
 } from "~/utils"
-import { useRouter, useUtil } from "."
+import { useRouter, useUtil, useT } from "."
 import { cookieStorage } from "@solid-primitives/storage"
+import { requestShortLink } from "~/utils/short_link"
 
 type URLType = "preview" | "direct" | "proxy"
 
@@ -99,20 +100,12 @@ export const useLink = () => {
 }
 
 const createShortLink = async (url: string) => {
-  const shortLinkAPI = getSetting("short_link_api").trim()
-  if (!shortLinkAPI) {
-    return url
-  }
-  const response = await fetch(shortLinkAPI, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url }),
+  const t = useT()
+  return requestShortLink(url, getSetting("short_link_api"), {
+    failed: t("home.preview.short_link_failed"),
+    network: t("home.preview.short_link_network"),
+    invalid: t("home.preview.short_link_invalid"),
   })
-  const body: { link?: string; message?: string } = await response.json()
-  if (!response.ok || !body.link) {
-    throw new Error(body.message || "Failed to create short link")
-  }
-  return body.link
 }
 
 export const useSelectedLink = () => {
@@ -145,6 +138,7 @@ export const useSelectedLink = () => {
 }
 
 export const useCopyLink = () => {
+  const t = useT()
   const { copy } = useUtil()
   const { previewPagesText, rawLinksText, shortLinksText } = useSelectedLink()
   const { currentObjLink } = useLink()
@@ -162,7 +156,7 @@ export const useCopyLink = () => {
         notify.error(
           error instanceof Error
             ? error.message
-            : "Failed to create short link",
+            : t("home.preview.short_link_failed"),
         )
       }
     },

@@ -65,5 +65,12 @@
     "paste_json": "Paste plugins JSON data here",
     "import_success": "Plugins imported successfully"
   },
-  "empty_installed": "No plugins installed yet. Click 'Install Plugin' to upload a ZIP package or install from URL."
+  "empty_installed": "No plugins installed yet. Click 'Install Plugin' to upload a ZIP package or install from URL.",
+  "icon": "Plugin icon",
+  "root_access": "Root access",
+  "zip_required": "Please select a .zip plugin archive",
+  "zip_parsed": "ZIP plugin package parsed successfully",
+  "valid_zip_required": "Please upload a valid plugin ZIP file first",
+  "manifest_url_required": "Please enter the plugin manifest URL",
+  "import_invalid": "Invalid JSON: must be an array of plugins"
 }

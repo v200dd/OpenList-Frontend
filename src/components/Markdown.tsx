@@ -10,7 +10,7 @@ import remarkRehype from "remark-rehype"
 import { For, Show, createEffect, createMemo, createSignal, on } from "solid-js"
 import { Motion } from "solid-motionone"
 import { unified } from "unified"
-import { useCDN, useParseText, useRouter } from "~/hooks"
+import { useCDN, useParseText, useRouter, useT } from "~/hooks"
 import { useScrollListener } from "~/pages/home/toolbar/BackTop.jsx"
 import { getMainColor, getSettingBool, me } from "~/store"
 import {
@@ -159,6 +159,7 @@ async function renderMarkdown(
   content: string,
   sanitize: boolean,
 ): Promise<{ html: string; hasMermaid: boolean }> {
+  const t = useT()
   let processor = unified()
 
   processor.use(remarkParse).use(remarkGfm)
@@ -169,14 +170,12 @@ async function renderMarkdown(
     const { default: remarkMath } = await import("remark-math")
     processor.use(remarkMath)
     await loadCSS(katexCSSPath(), "katex").catch(() =>
-      notify.error(
-        "Failed to load KaTeX CSS, math formulas will not be rendered",
-      ),
+      notify.error(t("home.preview.math_load_failed")),
     )
   }
   if (hasMermaid) {
     await loadScriptIIFE(mermaidJSPath(), "mermaid").catch(() =>
-      notify.error("Failed to load Mermaid JS, diagrams will not be rendered"),
+      notify.error(t("home.preview.diagram_load_failed")),
     )
   }
 

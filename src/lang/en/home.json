@@ -52,12 +52,39 @@
       "video360": "Video360 Player",
       "archive": "Archive Previewer",
       "torrent": "Transfer Seed Previewer"
-    }
+    },
+    "zoom_out": "Zoom out",
+    "zoom_in": "Zoom in",
+    "info": "Information",
+    "fit_page": "Fit page",
+    "fit_height": "Fit height",
+    "fit_width": "Fit width",
+    "rotate_left": "Rotate left",
+    "rotate_right": "Rotate right",
+    "search_language": "Search language...",
+    "cursor_position": "Line {{line}}, column {{column}}",
+    "word_count": "{{count}} words",
+    "show_all_players": "Show all players",
+    "no_transcoded_video": "No transcoding video found",
+    "math_load_failed": "Failed to load KaTeX CSS, math formulas will not be rendered",
+    "diagram_load_failed": "Failed to load Mermaid JS, diagrams will not be rendered",
+    "short_link_failed": "Failed to create short link",
+    "short_link_network": "Could not connect to short-link service",
+    "short_link_invalid": "Short-link service returned an invalid link",
+    "qr_failed": "Failed to create QR code",
+    "copy_link_manually": "Select and copy the link manually",
+    "doc_library_failed": "Document preview library failed to load",
+    "failed_load_doc": "Failed to load document",
+    "failed_load_excel": "Failed to load spreadsheet",
+    "failed_load_ppt": "Failed to load presentation",
+    "failed_load_swf": "Failed to load Flash file",
+    "editor_load_failed": "Failed to load the code editor"
   },
   "layouts": {
     "list": "List View",
     "grid": "Grid View",
-    "image": "Image View"
+    "image": "Image View",
+    "switch": "Switch layout"
   },
   "no_images": "No images in the current folder",
   "load_more": "Load more",
@@ -169,7 +196,10 @@
     "sequential_renaming_desc": "The new file name will have a numerical starting value appended to it, and it will be displayed sequentially by adding 1 to the starting value. Enter the new file name on the first line and the starting value on the second line. Supports {number} placeholders.",
     "sequential_renaming_input3_placeholder": "Padding zeros (optional)",
     "find_replace": "Find and Replace",
-    "find_replace_desc": "Find and Replace"
+    "find_replace_desc": "Find and Replace",
+    "copy_short_link": "Copy short link",
+    "fetching": "Fetching:",
+    "no_selected": "Select files first"
   },
   "transfer_seed": {
     "generate_title": "Generate transfer seed",
@@ -198,7 +228,7 @@
     "capability_summary": "Source capability summary",
     "estimated_traffic": "Estimated traffic",
     "requires_fetch": "Requires fetch",
-    "missing_hashes": "Missing {{hashes}}",
+    "missing_hashes": "Missing hashes",
     "hash_reuse_only_hint": "This backend only reuses hashes already returned by the storage driver. Unsupported formats and hashes stay disabled; pick files whose driver exposes the required hashes.",
     "parse_failed": "Failed to parse transfer seed",
     "cas_legacy_warning": "Legacy CAS contains only name, size, MD5, aggregate slice MD5, and creation time. Conversion is lossy: per-piece lists, comments, channels, trackers, and sources cannot be preserved.",
@@ -258,7 +288,6 @@
     "rapid_unavailable": "Rapid unavailable",
     "requires_hashes": "Requires hashes",
     "available_hashes": "Available hashes",
-    "missing_hashes": "Missing hashes",
     "unavailable_reason": "Unavailable reason",
     "loading_capabilities": "Loading driver capabilities...",
     "driver_no_rapid": "Driver does not support rapid upload",
@@ -272,7 +301,8 @@
     "preview_rapid_failed": "Failed to restore file",
     "select_at_least_one": "Select at least one file",
     "transit_path_required": "Transit path is required",
-    "source_path_required": "Source path is required for every selected file"
+    "source_path_required": "Source path is required for every selected file",
+    "files": "Files"
   },
   "upload": {
     "add_as_task": "Add as task",

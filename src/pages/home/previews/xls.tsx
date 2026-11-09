@@ -229,7 +229,7 @@ const ExcelViewerApp = () => {
 
           {/* 错误状态 */}
           <Show when={error()}>
-            <Erro msg={t("preview.failed_load_excel")} h="70vh" />
+            <Erro msg={t("home.preview.failed_load_excel")} h="70vh" />
           </Show>
         </div>
       </Box>

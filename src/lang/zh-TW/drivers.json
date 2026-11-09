@@ -1,6 +1,6 @@
 {
   "115 Cloud": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "cookie-tips": "需要二維碼令牌和 Cookie 其中之一",
     "limit_rate": "限制速率",
     "limit_rate-tips": "限制所有 API 請求率（[limit]r/1s）",
@@ -43,7 +43,7 @@
     "root_folder_id": "根文件夾 ID"
   },
   "115 Share": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "cookie-tips": "需要二維碼令牌和 Cookie 其中之一",
     "limit_rate": "限制速率",
     "limit_rate-tips": "限制所有 API 請求速率（1r/[limit_rate]s）",
@@ -98,7 +98,7 @@
     "origin_urls": "原始鏈接",
     "origin_urls-tips": "結構：\nFolderName:\n  [FileSize:][Modified:]URL",
     "private_key": "私鑰",
-    "uid": "UID",
+    "uid": "使用者編號",
     "valid_duration": "有效時長",
     "valid_duration-tips": "分鐘數"
   },
@@ -117,7 +117,7 @@
       "pc": "PC",
       "web": "網頁"
     },
-    "cloud_id": "Cloud ID",
+    "cloud_id": "雲端空間編號",
     "custom_upload_part_size": "自定義上傳分片大小",
     "custom_upload_part_size-tips": "0 為自動設置",
     "link_id": "連結 ID",
@@ -149,7 +149,7 @@
     "username-tips": "僅在使用搭配 mail_cookies 的密碼登入備援方式時需要。"
   },
   "189Cloud": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "cookie-tips": "如需輸入驗證碼，請填寫 Cookie。",
     "password": "密碼",
     "root_folder_id": "根文件夾 ID",
@@ -247,7 +247,7 @@
     "username": "用户名"
   },
   "AliDoc": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "cookie-tips": "釘釘文件網頁 Cookie",
     "root_folder_id": "Root folder id"
   },
@@ -383,7 +383,7 @@
     "modified_xpath": "修改時間 XPath",
     "name_xpath": "文件名 XPath",
     "size_xpath": "文件大小 XPath",
-    "url": "URL"
+    "url": "連結位址"
   },
   "Azure Blob Storage": {
     "access_key": "訪問密鑰",
@@ -435,7 +435,7 @@
   },
   "BaiduPhoto": {
     "album_id": "相簿 ID",
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "delete_origin": "刪除源文件",
     "show_type": "顯示類型",
     "show_types": {
@@ -472,8 +472,8 @@
     "use_tag_name-tips": "使用原始的 Tag 名稱而不是 Release 名稱"
   },
   "ChaoXingGroupDrive": {
-    "bbsid": "BBSID",
-    "cookie": "Cookie",
+    "bbsid": "群組編號",
+    "cookie": "Cookie（登入憑證）",
     "password": "密碼",
     "root_folder_id": "根文件夾 ID",
     "user_name": "用户名"
@@ -496,7 +496,7 @@
   },
   "Cloudreve": {
     "address": "地址",
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "custom_ua": "自定義 UA",
     "enable_thumb_and_folder_size": "啓用縮略圖和文件夾大小",
     "password": "密碼",
@@ -539,9 +539,9 @@
     "filename_encoding": "文件名編碼",
     "filename_encoding-tips": "高級選項",
     "filename_encodings": {
-      "base32": "Base32",
-      "base32768": "Base32768",
-      "base64": "Base64"
+      "base32": "Base32 編碼",
+      "base32768": "Base32768 編碼",
+      "base64": "Base64 編碼"
     },
     "filename_encryption": "文件名加密",
     "filename_encryptions": {
@@ -561,28 +561,28 @@
     "thumbnail-tips": "啓用在縮略圖文件夾下預先生成的縮略圖"
   },
   "CtFile": {
-    "session": "Session",
+    "session": "工作階段憑證",
     "session-tips": "OpenAPI session token from CtFile console → 开放接口登录密钥管理",
-    "cloud_type": "Cloud type",
+    "cloud_type": "儲存空間類型",
     "cloud_types": {
-      "public": "Public",
-      "private": "Private"
+      "public": "公共空間",
+      "private": "私人空間"
     },
-    "base_url": "Base URL",
-    "base_url-tips": "API base URL, default https://rest.ctfile.com/v1",
-    "order_by": "Order by",
+    "base_url": "介面基礎位址",
+    "base_url-tips": "介面基礎位址，預設 https://rest.ctfile.com/v1",
+    "order_by": "排序依據",
     "order_bys": {
-      "name": "Name",
-      "size": "Size",
-      "time": "Time"
+      "name": "名稱",
+      "size": "大小",
+      "time": "時間"
     },
-    "order_direction": "Order direction",
+    "order_direction": "排序方向",
     "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
+      "asc": "遞增",
+      "desc": "遞減"
     },
-    "user_agent": "User agent",
-    "root_folder_id": "Root folder id"
+    "user_agent": "用戶端識別",
+    "root_folder_id": "根資料夾編號"
   },
   "Degoo": {
     "access_token": "訪問令牌",
@@ -623,7 +623,7 @@
     "user_agent-tips": "用於 S3 請求的自訂 User-Agent。"
   },
   "Doubao": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "download_api": "下載接口",
     "download_apis": {
       "get_download_info": "獲取下載信息",
@@ -635,7 +635,7 @@
     "upload_thread": "上傳線程"
   },
   "DoubaoNew": {
-    "app_id": "App ID",
+    "app_id": "應用程式編號",
     "app_id-tips": "豆包 App ID",
     "auth_client_id": "認證客户端 ID",
     "auth_client_id-tips": "豆包 Biz 認證客户端 ID",
@@ -647,7 +647,7 @@
     "auth_sdk_source-tips": "豆包 Biz 認證 SDK 來源",
     "auth_sdk_version": "認證 SDK 版本",
     "auth_sdk_version-tips": "豆包 Biz 認證 SDK 版本",
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "cookie-tips": "網頁 Cookie",
     "dpop_key_secret": "DPoP 密鑰",
     "dpop_key_secret-tips": "用於生成 DPoP 令牌的 DPoP 密鑰",
@@ -658,7 +658,7 @@
     "share_link-tips": "是否使用分享鏈接進行下載"
   },
   "DoubaoShare": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "root_folder_path": "根文件夾路徑",
     "share_ids": "分享 ID"
   },
@@ -682,7 +682,7 @@
     },
     "password": "密碼",
     "root_folder_id": "根文件夾 ID",
-    "url": "URL",
+    "url": "連結位址",
     "user_id": "用户 ID",
     "username": "用户名"
   },
@@ -738,7 +738,7 @@
     "move_commit_message": "移動操作提交消息",
     "owner": "所有者",
     "put_commit_message": "上傳操作提交消息",
-    "ref": "Ref",
+    "ref": "分支或標籤",
     "ref-tips": "分支名、標籤或提交 SHA，不填寫使用默認主分支。",
     "rename_commit_message": "重命名操作提交消息",
     "repo": "倉庫",
@@ -867,7 +867,7 @@
     "account": "賬户",
     "baseUrl": "基礎 URL",
     "baseUrl-tips": "進行文件操作的基礎 URL",
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "cookie-tips": "有效期約為 15 天，若使用分享鏈接則忽略",
     "password": "密碼",
     "repair_file_info": "修復文件信息",
@@ -879,7 +879,7 @@
     "type": "類型",
     "types": {
       "account": "賬户",
-      "cookie": "Cookie",
+      "cookie": "Cookie（登入憑證）",
       "url": "鏈接"
     },
     "user_agent": "用户代理"
@@ -915,7 +915,7 @@
   },
   "MediaFire": {
     "chunk_size": "分片大小",
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "cookie-tips": "必填",
     "limit_rate": "限制速率",
     "limit_rate-tips": "限制所有 API 請求速率（[limit]r/1s）",
@@ -964,7 +964,7 @@
     "root_folder_path": "根文件夾路徑"
   },
   "MoPan": {
-    "cloud_id": "Cloud ID",
+    "cloud_id": "雲端空間編號",
     "device_info": "設備信息",
     "order_by": "排序依據",
     "order_bys": {
@@ -986,7 +986,7 @@
     "upload_thread-tips": "1 ≤ 線程 ≤ 32"
   },
   "NeteaseMusic": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "song_limit": "歌曲獲取上限",
     "song_limit-tips": "默認只獲取 200 首歌曲"
   },
@@ -1059,7 +1059,7 @@
     "pwd": "分享碼",
     "root_folder_path": "根文件夾路徑",
     "sid": "分享ID",
-    "url": "URL"
+    "url": "連結位址"
   },
   "PikPak": {
     "captcha_token": "驗證碼",
@@ -1101,7 +1101,7 @@
     "use_reusable_login-tips": "使用可重用的登錄憑據代替用户名/密碼登錄"
   },
   "Quark": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "only_list_video_file": "僅列出視頻文件",
     "order_by": "排序依據",
     "order_bys": {
@@ -1249,7 +1249,7 @@
     "withoutUrl-tips": "去除Strm文件中的URL前綴"
   },
   "Teambition": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "order_by": "排序依據",
     "order_bys": {
       "created": "創建時間",
@@ -1274,19 +1274,19 @@
   "Teldrive": {
     "chunk_size": "分片大小",
     "chunk_size-tips": "分片大小，單位 MiB",
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "cookie-tips": "access_token=xxx",
     "random_chunk_name": "隨機分片名",
     "random_chunk_name-tips": "隨機分片名",
     "root_folder_path": "根文件夾路徑",
     "upload_concurrency": "上傳併發數量",
     "upload_concurrency-tips": "上傳併發請求",
-    "url": "URL",
+    "url": "連結位址",
     "use_share_link": "使用分享鏈接",
     "use_share_link-tips": "獲取鏈接時創建共享鏈接以支持 302 。如果禁用，您就需要啓用 Web 代理。"
   },
   "Terabox": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "download_api": "下載接口",
     "download_apis": {
       "crack": "非官方",
@@ -1459,7 +1459,7 @@
     "username-tips": "登錄類型是用户名，此為必填項"
   },
   "UC": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "only_list_video_file": "僅列出視頻文件",
     "order_by": "排序依據",
     "order_bys": {
@@ -1523,7 +1523,7 @@
     "root_folder_path": "根文件夾路徑"
   },
   "WPS": {
-    "cookie": "Cookie",
+    "cookie": "Cookie（登入憑證）",
     "custom_ua": "自定義 UA",
     "mode": "類型",
     "modes": {
@@ -1545,7 +1545,7 @@
     }
   },
   "WeiYun": {
-    "cookies": "Cookie",
+    "cookies": "Cookie（登入憑證）",
     "order_by": "排序依據",
     "order_bys": {
       "name": "名稱",

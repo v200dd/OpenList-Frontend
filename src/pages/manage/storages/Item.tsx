@@ -14,39 +14,16 @@ import { useT } from "~/hooks"
 import { DriverItem, Type } from "~/types"
 import { SelectOptions } from "~/components"
 
+// Driver schemas arrive at runtime; the field type selects the value renderer.
 export type ItemProps = DriverItem & {
   readonly?: boolean
   full_name_path?: string
   options_prefix?: string
   driver?: string
-} & (
-    | {
-        type: Type.Bool
-        onChange?: (value: boolean) => void
-        value: boolean | Accessor<boolean>
-      }
-    | {
-        type: Type.Number
-        onChange?: (value: number) => void
-        value: number | Accessor<number>
-      }
-    | {
-        type: Type.Float
-        onChange?: (value: number) => void
-        value: number | Accessor<number>
-      }
-    | {
-        type: Type.String | Type.Text
-        onChange?: (value: string) => void
-        value: string | Accessor<string>
-      }
-    | {
-        type: Type.Select
-        searchable?: boolean
-        onChange?: (value: string) => void
-        value: string | Accessor<string>
-      }
-  )
+  searchable?: boolean
+  value: string | number | boolean | Accessor<string | number | boolean>
+  onChange?: (value: string | number | boolean) => void
+}
 
 const Item = (props: ItemProps) => {
   const t = useT()
@@ -61,9 +38,10 @@ const Item = (props: ItemProps) => {
     >
       <FormLabel for={props.name} display="flex" alignItems="center">
         {t(
-          (props.full_name_path ?? props.driver === "common")
-            ? `storages.common.${props.name}`
-            : `drivers.${props.driver}.${props.name}`,
+          props.full_name_path ??
+            (props.driver === "common"
+              ? `storages.common.${props.name}`
+              : `drivers.${props.driver}.${props.name}`),
         )}
       </FormLabel>
       <Switch fallback={<Center>{t("settings.unknown_type")}</Center>}>

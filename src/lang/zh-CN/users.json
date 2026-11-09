@@ -46,7 +46,7 @@
   "sso_login": "单点登录",
   "connect_sso": "绑定单点登录平台",
   "disconnect_sso": "解绑单点登录平台",
-  "webauthn": "WebAuthn",
+  "webauthn": "通行密钥认证",
   "add_webauthn": "添加 WebAuthn 凭据",
   "add_webauthn_success": "WebAuthn 凭据添加成功！",
   "webauthn_not_supported": "您的浏览器不支持 WebAuthn ，或者您的 Origin 不安全",

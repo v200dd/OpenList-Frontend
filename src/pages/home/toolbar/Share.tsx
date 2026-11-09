@@ -214,7 +214,7 @@ export const Share = () => {
                   <IconButton
                     colorScheme="neutral"
                     size="sm"
-                    aria-label="random"
+                    aria-label={t("global.random")}
                     icon={<TbRefresh />}
                     onClick={() => {
                       setShare("pwd", randomPwd())
@@ -235,7 +235,7 @@ export const Share = () => {
                   size="sm"
                   invalid={!expireValid()}
                   value={expireString()}
-                  placeholder="yyyy-MM-dd HH:mm:ss or +1w1d1H1m1s1ms"
+                  placeholder={t("global.date_or_duration")}
                   onInput={(e) => {
                     setExpireString(e.currentTarget.value)
                     if (e.currentTarget.value === "") {

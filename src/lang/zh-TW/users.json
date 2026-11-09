@@ -46,7 +46,7 @@
   "sso_login": "單點登錄",
   "connect_sso": "綁定單點登錄平台",
   "disconnect_sso": "解綁單點登錄平台",
-  "webauthn": "WebAuthn",
+  "webauthn": "通行金鑰驗證",
   "add_webauthn": "添加 WebAuthn 憑據",
   "add_webauthn_success": "WebAuthn 憑據添加成功！",
   "webauthn_not_supported": "您的瀏覽器不支持 WebAuthn ，或者您的 Origin 不安全",

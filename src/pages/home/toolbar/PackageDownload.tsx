@@ -158,7 +158,7 @@ const PackageDownload = (props: { onClose: () => void }) => {
                   wordBreak: "break-all",
                 }}
               >
-                Fetching: {name}
+                {t("home.toolbar.fetching")} {name}
               </Text>
             )}
           </For>

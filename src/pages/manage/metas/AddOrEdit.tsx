@@ -57,6 +57,7 @@ const AddOrEdit = () => {
               : { "@initial": "column", "@md": "row" }
           }
           gap="$2"
+          css={{ flexWrap: "wrap" }}
         >
           {props.type === "string" ? (
             <Input
@@ -77,26 +78,31 @@ const AddOrEdit = () => {
               onChange={(e) => props.onChange(e.currentTarget.value)}
             />
           ) : props.type === "download" ? (
-            <Select value={props.value || "inherit"} onChange={props.onChange}>
-              <SelectTrigger id={props.name}>
-                <SelectValue />
-                <SelectIcon />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectListbox>
-                  <For each={["inherit", "enabled", "disabled"]}>
-                    {(policy) => (
-                      <SelectOption value={policy}>
-                        <SelectOptionText>
-                          {t(`metas.download_policy_${policy}`)}
-                        </SelectOptionText>
-                        <SelectOptionIndicator />
-                      </SelectOption>
-                    )}
-                  </For>
-                </SelectListbox>
-              </SelectContent>
-            </Select>
+            <div style={{ flex: "1 1 18rem", "min-width": "0" }}>
+              <Select
+                value={props.value || "inherit"}
+                onChange={props.onChange}
+              >
+                <SelectTrigger id={props.name}>
+                  <SelectValue />
+                  <SelectIcon />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectListbox>
+                    <For each={["inherit", "enabled", "disabled"]}>
+                      {(policy) => (
+                        <SelectOption value={policy}>
+                          <SelectOptionText>
+                            {t(`metas.download_policy_${policy}`)}
+                          </SelectOptionText>
+                          <SelectOptionIndicator />
+                        </SelectOption>
+                      )}
+                    </For>
+                  </SelectListbox>
+                </SelectContent>
+              </Select>
+            </div>
           ) : props.type === "users" ? (
             <Select
               value={props.value}

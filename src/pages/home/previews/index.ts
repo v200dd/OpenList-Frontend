@@ -46,7 +46,11 @@ export interface Preview {
 export interface PreviewComponent {
   key: string
   name: string
-  component: Component
+  component: Component<{
+    images?: Obj[]
+    navigate?: (name: string) => void
+    openWith?: boolean
+  }>
 }
 
 const previews: Preview[] = [

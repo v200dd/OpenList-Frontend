@@ -1,10 +1,13 @@
 import { Center, ElementType, Spinner, SpinnerProps } from "@hope-ui/solid"
 import { JSXElement, mergeProps, Show } from "solid-js"
 import { getMainColor } from "~/store"
+import { useT } from "~/hooks"
 export const FullScreenLoading = () => {
+  const t = useT()
   return (
     <Center h="100vh">
       <Spinner
+        label={t("global.loading")}
         thickness="4px"
         speed="0.65s"
         emptyColor="$neutral4"
@@ -21,6 +24,7 @@ export const FullLoading = (props: {
   thickness?: number
   ref?: any
 }) => {
+  const t = useT()
   const merged = mergeProps(
     {
       py: "$8",
@@ -32,6 +36,7 @@ export const FullLoading = (props: {
   return (
     <Center ref={props.ref} h="$full" w="$full" py={merged.py}>
       <Spinner
+        label={t("global.loading")}
         thickness={`${merged.thickness}px`}
         speed="0.65s"
         emptyColor="$neutral4"
@@ -56,9 +61,14 @@ export const MaybeLoading = (props: {
 export const CenterLoading = <C extends ElementType = "div">(
   props: SpinnerProps<C>,
 ) => {
+  const t = useT()
   return (
     <Center w="$full" h="$full">
-      <Spinner color={getMainColor()} {...props} />
+      <Spinner
+        color={getMainColor()}
+        {...props}
+        label={props.label ?? t("global.loading")}
+      />
     </Center>
   )
 }

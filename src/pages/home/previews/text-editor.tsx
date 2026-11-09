@@ -15,7 +15,7 @@ import {
 } from "@hope-ui/solid"
 import { createShortcut } from "@solid-primitives/keyboard"
 import { useBeforeLeave } from "@solidjs/router"
-import type * as monacoType from "monaco-editor/esm/vs/editor/editor.api.js"
+import type * as monacoType from "monaco-editor"
 import { BiRegularRedo, BiRegularUndo } from "solid-icons/bi"
 import { FaSolidMinus, FaSolidPlus } from "solid-icons/fa"
 import {
@@ -450,7 +450,7 @@ function Editor(props: { data?: string | ArrayBuffer; contentType?: string }) {
               <PopoverBody p="$2">
                 <Input
                   size="xs"
-                  placeholder="Search language..."
+                  placeholder={t("home.preview.search_language")}
                   value={langSearch()}
                   onInput={(e) => setLangSearch(e.currentTarget.value)}
                   mb="$2"
@@ -500,9 +500,14 @@ function Editor(props: { data?: string | ArrayBuffer; contentType?: string }) {
         </Show>
         <Box flex="1" />
         <Box style={{ "white-space": "nowrap" }}>
-          Ln {cursorLine()}, Col {cursorColumn()}
+          {t("home.preview.cursor_position", {
+            line: String(cursorLine()),
+            column: String(cursorColumn()),
+          })}
         </Box>
-        <Box style={{ "white-space": "nowrap" }}>{wordCount()} words</Box>
+        <Box style={{ "white-space": "nowrap" }}>
+          {t("home.preview.word_count", { count: String(wordCount()) })}
+        </Box>
         <Show when={modified()}>
           <Box color="$warning11" style={{ "white-space": "nowrap" }}>
             ●

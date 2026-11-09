@@ -148,6 +148,9 @@ build_project() {
     pnpm install
 
     log_step "==== Building i18n ===="
+    local source_snapshot
+    source_snapshot=$(mktemp -d)
+    node ./scripts/source-locales.mjs snapshot "$source_snapshot"
     if [[ "$SKIP_I18N" == "false" ]]; then
         if ! pnpm i18n:release; then
             log_warning "Crowdin download failed, falling back to the edge beta release"
@@ -157,9 +160,17 @@ build_project() {
         fetch_i18n_from_release "edge" || true
     fi
 
+    # Upstream/Crowdin archives may not contain translations for fork features.
+    # Keep our source dictionaries (including uncommitted local edits) authoritative.
+    node ./scripts/source-locales.mjs restore "$source_snapshot"
+    rm -rf "$source_snapshot"
+
     # Always generate entry.ts and fill missing translation files for all languages
     log_info "Running i18n build script to generate entry.ts..."
     node ./scripts/i18n.mjs
+
+    log_step "==== Verifying translations and types ===="
+    pnpm test
 
     log_step "==== Building project ===="
     if [[ "$LITE_FLAG" == "true" ]]; then
@@ -174,7 +185,8 @@ fetch_i18n_from_release() {
     local release_tag=${1:-edge}
 
     log_warning "Trying to fetch i18n files from GitHub release: $release_tag"
-    release_response=$(curl -fsSL "https://api.github.com/repos/OpenListTeam/OpenList-Frontend/releases/tags/$release_tag") || {
+    local i18n_repo=${FRONTEND_I18N_REPO:-v200dd/OpenList-Frontend}
+    release_response=$(curl -fsSL "https://api.github.com/repos/$i18n_repo/releases/tags/$release_tag") || {
         log_warning "Failed to fetch release info for $release_tag."
         return 1
     }

@@ -156,9 +156,9 @@
   "proxy_ignore_headers": "代理忽略头部",
   "proxy_types": "代理类型",
   "qbittorrent_seedtime": "qBittorrent 做种时间",
-  "qbittorrent_url": "qBittorrent URL",
+  "qbittorrent_url": "qBittorrent 地址",
   "readme_autorender": "README 自动渲染",
-  "robots_txt": "Robots.txt",
+  "robots_txt": "搜索引擎抓取规则（robots.txt）",
   "s3_access_key_id": "S3 访问密钥 ID",
   "s3_buckets": "S3 存储桶",
   "s3_secret_access_key": "S3 访问密钥",
@@ -324,7 +324,7 @@
   "transcode_worker_secret": "远程 Worker 密钥",
   "transcode_worker_secret-tips": "远程 Worker 注册时使用的共享密钥，留空则禁用远程 Worker 注册",
   "transmission_seedtime": "Transmission 做种时间",
-  "transmission_uri": "Transmission URI",
+  "transmission_uri": "Transmission 地址",
   "upload_task_threads_num": "上传任务线程数",
   "version": "后端版本",
   "video_autoplay": "自动播放视频",
@@ -333,5 +333,10 @@
   "enable_file_download": "允许下载和复制链接",
   "enable_file_download-tips": "默认显示下载、复制链接、二维码和对应右键菜单；元信息可按文件夹覆盖，管理员始终开启。",
   "short_link_api": "短链接接口",
-  "short_link_api-tips": "POST JSON：{\"url\":\"...\"}；响应 JSON 必须包含 link 字段"
+  "short_link_api-tips": "POST JSON：{\"url\":\"...\"}；响应 JSON 必须包含 link 字段",
+  "s3_generate": "生成访问密钥",
+  "s3_restart_to_apply": "重启服务后生效",
+  "s3_buckets_empty": "存储桶名称和路径应填写完整",
+  "s3_buckets_duplicate_name": "存储桶名称重复",
+  "unknown_type": "未知字段类型"
 }

@@ -128,6 +128,7 @@ const AddOrEdit = () => {
           options_prefix="drivers.drivers"
           driver="drivers"
           onChange={(value) => {
+            if (typeof value !== "string" || !drivers()[value]) return
             for (const item of drivers()[value].common) {
               setStorage(
                 item.name as keyof Storage,

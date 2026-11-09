@@ -54,7 +54,7 @@ const Header = () => {
       <Flex alignItems="center" justifyContent="space-between" h="$full">
         <HStack spacing="$2">
           <IconButton
-            aria-label="menu"
+            aria-label={t("global.menu")}
             icon={<TiThMenu />}
             display={{ "@sm": "none" }}
             onClick={onOpen}
@@ -73,7 +73,7 @@ const Header = () => {
         </HStack>
         <HStack spacing="$1">
           <IconButton
-            aria-label="logout"
+            aria-label={t("global.logout")}
             icon={<IoExit />}
             loading={logOutReqLoading()}
             onClick={logOut}

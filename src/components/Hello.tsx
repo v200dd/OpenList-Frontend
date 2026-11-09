@@ -1,4 +1,7 @@
+import { useT } from "~/hooks"
+
 const Hello = () => {
-  return <h1>Hello, Solidjs</h1>
+  const t = useT()
+  return <h1>{t("global.greeting")}</h1>
 }
 export default Hello

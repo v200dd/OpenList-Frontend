@@ -1,3 +1,4 @@
+import { useT } from "~/hooks"
 import {
   Box,
   Button,
@@ -28,6 +29,7 @@ export interface PaginatorProps {
   setResetCallback?: (callback: () => void) => void
 }
 export const Paginator = (props: PaginatorProps) => {
+  const t = useT()
   const merged = mergeProps(
     {
       maxShowPage: 4,
@@ -88,7 +90,7 @@ export const Paginator = (props: PaginatorProps) => {
           <IconButton
             size={size}
             icon={<FaSolidAngleLeft />}
-            aria-label="Previous"
+            aria-label={t("global.previous")}
             colorScheme={merged.colorScheme}
             onClick={() => {
               onPageChange(store.current - 1)
@@ -159,7 +161,7 @@ export const Paginator = (props: PaginatorProps) => {
           <IconButton
             size={size}
             icon={<FaSolidAngleRight />}
-            aria-label="Next"
+            aria-label={t("global.next")}
             colorScheme={merged.colorScheme}
             onClick={() => {
               onPageChange(store.current + 1)

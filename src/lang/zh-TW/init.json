@@ -21,7 +21,7 @@
   "env_check_not_ready": "環境尚未就緒",
   "env_check_refresh": "重新檢查",
   "env_runtime": "執行環境",
-  "env_serverless": "無伺服器",
+  "env_serverless": "無伺服器環境",
   "env_local": "本機／容器",
   "env_format": "儲存格式",
   "env_driver": "資料庫驅動程式",

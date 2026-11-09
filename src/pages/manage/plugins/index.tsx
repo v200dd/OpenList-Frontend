@@ -123,7 +123,7 @@ const Plugins = () => {
     try {
       const parsed = JSON.parse(importJsonText())
       if (!Array.isArray(parsed)) {
-        notify.error("Invalid JSON: must be an array of plugins")
+        notify.error(t("plugins.import_invalid"))
         return
       }
       const resp: Resp<{ count: number }> = await r.post(
@@ -181,7 +181,7 @@ const Plugins = () => {
         </Button>
 
         <HStack spacing="$1">
-          <span>{t("storages.other.layout")}</span>
+          <span>{t("home.layouts.switch")}</span>
           <HopeSwitch
             checked={layout() === "grid"}
             onChange={(e: any) =>
@@ -224,7 +224,7 @@ const Plugins = () => {
                   <Th>{t("plugins.type")}</Th>
                   <Th>{t("plugins.version")}</Th>
                   <Th>{t("plugins.author")}</Th>
-                  <Th>{t("plugins.status")}</Th>
+                  <Th>{t("plugins.status_col")}</Th>
                   <Th>{t("global.operations")}</Th>
                 </Tr>
               </Thead>

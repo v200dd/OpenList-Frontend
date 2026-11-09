@@ -1,10 +1,20 @@
 import { Box } from "@hope-ui/solid"
-import { createEffect, createSignal, on, onCleanup, onMount } from "solid-js"
+import {
+  createEffect,
+  createSignal,
+  on,
+  onCleanup,
+  onMount,
+  Show,
+} from "solid-js"
 import { MaybeLoading } from "./FullLoading"
+import { Error as ErrorView } from "./Base"
 import loader from "@monaco-editor/loader"
-import { useCDN } from "~/hooks"
-import type * as monacoType from "monaco-editor/esm/vs/editor/editor.api.js"
+import { useCDN, useT } from "~/hooks"
+import type * as monacoType from "monaco-editor"
 import { local } from "~/store"
+import { currentLang } from "~/app/i18n"
+import { loadScriptIIFE } from "~/utils/load_external"
 
 export interface MonacoEditorProps {
   value: string
@@ -16,22 +26,65 @@ export interface MonacoEditorProps {
 }
 export let monaco: typeof monacoType
 
+const supportedEditorLanguages = new Set([
+  "cs",
+  "de",
+  "es",
+  "fr",
+  "it",
+  "ja",
+  "ko",
+  "pl",
+  "pt-br",
+  "ru",
+  "tr",
+  "zh-cn",
+  "zh-tw",
+])
+
 export const MonacoEditorLoader = (props: MonacoEditorProps) => {
+  const t = useT()
   const { monacoPath } = useCDN()
   const [loading, setLoading] = createSignal(true)
+  const [error, setError] = createSignal("")
+  const locale = currentLang().toLowerCase()
+  const editorLocale = supportedEditorLanguages.has(locale)
+    ? locale
+    : supportedEditorLanguages.has(locale.split("-")[0])
+      ? locale.split("-")[0]
+      : "en"
   loader.config({
     paths: {
       vs: monacoPath(),
     },
+    // Monaco 0.57 locale files set globals rather than defining an AMD module.
+    // Preload them as scripts; asking AMD to require them stalls initialization.
+    "vs/nls": { availableLanguages: { "*": "en" } },
   })
-  loader.init().then((m) => {
-    monaco = m
-    setLoading(false)
-  })
+  Promise.resolve()
+    .then(async () => {
+      if (editorLocale !== "en") {
+        await loadScriptIIFE(
+          `${monacoPath()}/nls/lang/${editorLocale}.js`,
+          `monaco-nls-${editorLocale}`,
+        )
+      }
+      return loader.init()
+    })
+    .then((m) => {
+      monaco = m
+      setLoading(false)
+    })
+    .catch(() => {
+      setError(t("home.preview.editor_load_failed"))
+      setLoading(false)
+    })
   return (
-    <MaybeLoading loading={loading()}>
-      <MonacoEditor {...props} />
-    </MaybeLoading>
+    <Show when={!error()} fallback={<ErrorView msg={error()} />}>
+      <MaybeLoading loading={loading()}>
+        <MonacoEditor {...props} />
+      </MaybeLoading>
+    </Show>
   )
 }
 

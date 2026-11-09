@@ -44,7 +44,7 @@ const DocViewerApp = () => {
 
       // 等待docx库加载完成
       if (!window.docx) {
-        throw new Error("docx-preview library not loaded")
+        throw new Error(t("home.preview.doc_library_failed"))
       }
 
       // 获取文件URL并下载
@@ -159,7 +159,7 @@ const DocViewerApp = () => {
         <IconButton
           size="sm"
           colorScheme="neutral"
-          aria-label="Zoom Out"
+          aria-label={t("home.preview.zoom_out")}
           icon={<HiOutlineMagnifyingGlassMinus />}
           onClick={zoomOut}
         />
@@ -178,7 +178,7 @@ const DocViewerApp = () => {
         <IconButton
           size="sm"
           colorScheme="neutral"
-          aria-label="Zoom In"
+          aria-label={t("home.preview.zoom_in")}
           icon={<HiOutlineMagnifyingGlassPlus />}
           onClick={zoomIn}
         />
@@ -212,7 +212,7 @@ const DocViewerApp = () => {
 
         {/* 错误状态 */}
         <Show when={error()}>
-          <Erro msg={t("preview.failed_load_doc")} h="70vh" />
+          <Erro msg={t("home.preview.failed_load_doc")} h="70vh" />
         </Show>
       </div>
     </BoxWithFullScreen>

@@ -156,9 +156,9 @@
   "proxy_ignore_headers": "代理忽略头部",
   "proxy_types": "代理類型",
   "qbittorrent_seedtime": "qBittorrent 做種時間",
-  "qbittorrent_url": "qBittorrent URL",
+  "qbittorrent_url": "qBittorrent 位址",
   "readme_autorender": "README 自動渲染",
-  "robots_txt": "Robots.txt",
+  "robots_txt": "搜尋引擎擷取規則（robots.txt）",
   "s3_access_key_id": "S3 存取金鑰 ID",
   "s3_buckets": "S3 儲存貯體",
   "s3_secret_access_key": "S3 存取金鑰",
@@ -324,7 +324,7 @@
   "transcode_worker_secret": "遠端工作程序密鑰",
   "transcode_worker_secret-tips": "遠端 Worker 註冊時使用的共用密鑰，留空則停用遠端 Worker 註冊",
   "transmission_seedtime": "Transmission 做種時間",
-  "transmission_uri": "Transmission URI",
+  "transmission_uri": "Transmission 位址",
   "upload_task_threads_num": "上傳任務執行緒數",
   "version": "後端版本",
   "video_autoplay": "自動播放影片",
@@ -333,5 +333,10 @@
   "enable_file_download": "允許下載和複製連結",
   "enable_file_download-tips": "預設顯示下載、複製連結、二維碼與對應右鍵選單；中繼資料可按資料夾覆蓋，管理員始終開啟。",
   "short_link_api": "短連結介面",
-  "short_link_api-tips": "POST JSON：{\"url\":\"...\"}；回應 JSON 必須包含 link 欄位"
+  "short_link_api-tips": "POST JSON：{\"url\":\"...\"}；回應 JSON 必須包含 link 欄位",
+  "s3_generate": "產生存取金鑰",
+  "s3_restart_to_apply": "重新啟動服務後生效",
+  "s3_buckets_empty": "儲存貯體名稱和路徑應填寫完整",
+  "s3_buckets_duplicate_name": "儲存貯體名稱重複",
+  "unknown_type": "未知欄位類型"
 }

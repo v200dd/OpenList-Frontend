@@ -337,10 +337,10 @@ const Preview = (props: PreviewProps) => {
         >
           <HStack spacing="$1">
             <Show when={curIdx() > 0}>
-              <Tooltip label="Previous (←)">
+              <Tooltip label={`${t("global.previous")} (←)`}>
                 <IconButton
                   icon={<FaSolidAngleLeft />}
-                  aria-label="Previous"
+                  aria-label={t("global.previous")}
                   variant="ghost"
                   size="sm"
                   onClick={prev}
@@ -348,10 +348,10 @@ const Preview = (props: PreviewProps) => {
               </Tooltip>
             </Show>
             <Show when={curIdx() < images.length - 1}>
-              <Tooltip label="Next (→)">
+              <Tooltip label={`${t("global.next")} (→)`}>
                 <IconButton
                   icon={<FaSolidAngleRight />}
-                  aria-label="Next"
+                  aria-label={t("global.next")}
                   variant="ghost"
                   size="sm"
                   onClick={next}
@@ -379,74 +379,74 @@ const Preview = (props: PreviewProps) => {
           </HStack>
           <Spacer />
           <HStack spacing="$1">
-            <Tooltip label="Info (I)">
+            <Tooltip label={`${t("home.preview.info")} (I)`}>
               <IconButton
                 icon={<BsInfoCircle />}
-                aria-label="Info"
+                aria-label={t("home.preview.info")}
                 variant={showInfo() ? "subtle" : "ghost"}
                 size="sm"
                 onClick={() => setShowInfo((v) => !v)}
               />
             </Tooltip>
 
-            <Tooltip label="Zoom out (−)">
+            <Tooltip label={`${t("home.preview.zoom_out")} (−)`}>
               <IconButton
                 icon={<BsZoomOut />}
-                aria-label="Zoom out"
+                aria-label={t("home.preview.zoom_out")}
                 variant="ghost"
                 size="sm"
                 onClick={zoomOut}
               />
             </Tooltip>
-            <Tooltip label="Zoom in (+)">
+            <Tooltip label={`${t("home.preview.zoom_in")} (+)`}>
               <IconButton
                 icon={<BsZoomIn />}
-                aria-label="Zoom in"
+                aria-label={t("home.preview.zoom_in")}
                 variant="ghost"
                 size="sm"
                 onClick={zoomIn}
               />
             </Tooltip>
-            <Tooltip label="Fit page (C)">
+            <Tooltip label={`${t("home.preview.fit_page")} (C)`}>
               <IconButton
                 icon={<TbArrowAutofitContent />}
-                aria-label="Fit page"
+                aria-label={t("home.preview.fit_page")}
                 variant="ghost"
                 size="sm"
                 onClick={fitPage}
               />
             </Tooltip>
-            <Tooltip label="Fit height (H)">
+            <Tooltip label={`${t("home.preview.fit_height")} (H)`}>
               <IconButton
                 icon={<TbArrowAutofitHeight />}
-                aria-label="Fit height"
+                aria-label={t("home.preview.fit_height")}
                 variant="ghost"
                 size="sm"
                 onClick={fitHeight}
               />
             </Tooltip>
-            <Tooltip label="Fit width (W)">
+            <Tooltip label={`${t("home.preview.fit_width")} (W)`}>
               <IconButton
                 icon={<TbArrowAutofitWidth />}
-                aria-label="Fit width"
+                aria-label={t("home.preview.fit_width")}
                 variant="ghost"
                 size="sm"
                 onClick={fitWidth}
               />
             </Tooltip>
-            <Tooltip label="Rotate left (R)">
+            <Tooltip label={`${t("home.preview.rotate_left")} (R)`}>
               <IconButton
                 icon={<BsArrowCounterclockwise />}
-                aria-label="Rotate left"
+                aria-label={t("home.preview.rotate_left")}
                 variant="ghost"
                 size="sm"
                 onClick={rotL}
               />
             </Tooltip>
-            <Tooltip label="Rotate right (Shift+R)">
+            <Tooltip label={`${t("home.preview.rotate_right")} (Shift+R)`}>
               <IconButton
                 icon={<BsArrowClockwise />}
-                aria-label="Rotate right"
+                aria-label={t("home.preview.rotate_right")}
                 variant="ghost"
                 size="sm"
                 onClick={rotR}

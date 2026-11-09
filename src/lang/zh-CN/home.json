@@ -52,12 +52,39 @@
       "video360": "全景视频播放器",
       "archive": "压缩包预览器",
       "torrent": "传输种子预览器"
-    }
+    },
+    "zoom_out": "缩小",
+    "zoom_in": "放大",
+    "info": "文件信息",
+    "fit_page": "适应页面",
+    "fit_height": "适应高度",
+    "fit_width": "适应宽度",
+    "rotate_left": "向左旋转",
+    "rotate_right": "向右旋转",
+    "search_language": "搜索语言…",
+    "cursor_position": "第 {{line}} 行，第 {{column}} 列",
+    "word_count": "{{count}} 字",
+    "show_all_players": "显示全部播放器",
+    "no_transcoded_video": "未找到转码视频",
+    "math_load_failed": "数学公式样式加载失败，暂时无法显示公式",
+    "diagram_load_failed": "图表组件加载失败，暂时无法显示图表",
+    "short_link_failed": "短链接生成失败",
+    "short_link_network": "短链接服务连接失败",
+    "short_link_invalid": "短链接服务返回的链接无效",
+    "qr_failed": "二维码生成失败",
+    "copy_link_manually": "请选中并手动复制链接",
+    "doc_library_failed": "文档预览组件加载失败",
+    "failed_load_doc": "文档加载失败",
+    "failed_load_excel": "表格加载失败",
+    "failed_load_ppt": "演示文稿加载失败",
+    "failed_load_swf": "Flash 文件加载失败",
+    "editor_load_failed": "代码编辑器加载失败"
   },
   "layouts": {
     "list": "列表视图",
     "grid": "网格视图",
-    "image": "图片视图"
+    "image": "图片视图",
+    "switch": "切换布局"
   },
   "no_images": "当前文件夹中没有图片",
   "load_more": "加载更多",
@@ -169,7 +196,10 @@
     "sequential_renaming_input3_placeholder": "前导零填充宽度（可选）",
     "find_replace": "查找并替换",
     "find_replace_desc": "查找并替换",
-    "no_actions": "无可用"
+    "no_actions": "无可用",
+    "copy_short_link": "复制短链接",
+    "fetching": "正在获取：",
+    "no_selected": "请先选择文件"
   },
   "transfer_seed": {
     "generate_title": "生成传输种子",
@@ -271,7 +301,8 @@
     "preview_rapid_failed": "恢复文件失败",
     "select_at_least_one": "请至少选择一个文件",
     "transit_path_required": "必须填写中转路径",
-    "source_path_required": "必须为每个所选文件填写来源路径"
+    "source_path_required": "必须为每个所选文件填写来源路径",
+    "files": "文件列表"
   },
   "upload": {
     "add_as_task": "添加为任务",

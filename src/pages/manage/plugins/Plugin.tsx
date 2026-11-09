@@ -77,7 +77,7 @@ export function PluginListItem(props: PluginItemProps) {
             >
               <img
                 src={props.plugin.icon}
-                alt="icon"
+                alt={t("plugins.icon")}
                 style={{
                   width: "18px",
                   height: "18px",
@@ -111,7 +111,7 @@ export function PluginListItem(props: PluginItemProps) {
             {t(`global.${props.plugin.enabled ? "enable" : "disable"}`)}
           </Badge>
           <Show when={props.plugin.high_privilege}>
-            <Badge colorScheme="danger">Root</Badge>
+            <Badge colorScheme="danger">{t("plugins.root_access")}</Badge>
           </Show>
         </HStack>
       </Td>
@@ -161,7 +161,7 @@ export function PluginGridItem(props: PluginItemProps) {
               >
                 <img
                   src={props.plugin.icon}
-                  alt="icon"
+                  alt={t("plugins.icon")}
                   style={{
                     width: "20px",
                     height: "20px",
@@ -184,7 +184,7 @@ export function PluginGridItem(props: PluginItemProps) {
               {t(`global.${props.plugin.enabled ? "enable" : "disable"}`)}
             </Badge>
             <Show when={props.plugin.high_privilege}>
-              <Badge colorScheme="danger">Root</Badge>
+              <Badge colorScheme="danger">{t("plugins.root_access")}</Badge>
             </Show>
           </HStack>
         </HStack>

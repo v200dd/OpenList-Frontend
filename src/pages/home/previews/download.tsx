@@ -14,19 +14,34 @@ import { useCopyLink, useLink, useT } from "~/hooks"
 import { isFileDownloadEnabled, objStore } from "~/store"
 import { FileInfo } from "./info"
 import { OpenWith } from "../file/open-with"
-import { createSignal, Show } from "solid-js"
+import { createEffect, createSignal, onCleanup, Show } from "solid-js"
 import { BsQrCode } from "solid-icons/bs"
 import QRCode from "qrcode"
+import { notify } from "~/utils"
 
 export const Download = (props: { openWith?: boolean }) => {
   const t = useT()
   const { copyCurrentRawLink } = useCopyLink()
   const { currentObjLink } = useLink()
   const [qrUrl, setQrUrl] = createSignal("")
-  QRCode.toDataURL(currentObjLink(), {
-    type: "image/jpeg",
-    scale: 2,
-  }).then((url) => setQrUrl(url))
+  createEffect(() => {
+    const link = currentObjLink()
+    if (!isFileDownloadEnabled()) {
+      setQrUrl("")
+      return
+    }
+    let active = true
+    onCleanup(() => {
+      active = false
+    })
+    QRCode.toDataURL(link, { type: "image/jpeg", scale: 2 })
+      .then((url) => {
+        if (active) setQrUrl(url)
+      })
+      .catch(() => {
+        if (active) notify.error(t("home.preview.qr_failed"))
+      })
+  })
   const [pinned, setPinned] = createSignal(false)
   const [hover, setHover] = createSignal(false)
   return (
@@ -41,7 +56,7 @@ export const Download = (props: { openWith?: boolean }) => {
               <PopoverTrigger
                 as={IconButton}
                 icon={<BsQrCode />}
-                aria-label="QRCode"
+                aria-label={t("global.qr_code")}
                 onClick={() => {
                   setPinned(!pinned())
                 }}
@@ -54,7 +69,7 @@ export const Download = (props: { openWith?: boolean }) => {
                   <Image
                     maxWidth="300px"
                     src={qrUrl()}
-                    alt="QR Code of download link"
+                    alt={t("global.download_qr_code")}
                     objectFit="cover"
                   />
                 </PopoverBody>

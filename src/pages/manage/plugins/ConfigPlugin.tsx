@@ -239,7 +239,7 @@ const ConfigPlugin = () => {
                 >
                   <img
                     src={plugin()?.icon}
-                    alt="plugin icon"
+                    alt={t("plugins.icon")}
                     style={{
                       width: "24px",
                       height: "24px",
@@ -303,7 +303,7 @@ const ConfigPlugin = () => {
               onChange={(e: any) => setHighPrivilege(e.target.checked)}
             />
             <Show when={highPrivilege()}>
-              <Badge colorScheme="danger">Root Access</Badge>
+              <Badge colorScheme="danger">{t("plugins.root_access")}</Badge>
             </Show>
           </HStack>
           <FormHelperText color="$neutral10" fontSize="$xs" mt="$0_5">

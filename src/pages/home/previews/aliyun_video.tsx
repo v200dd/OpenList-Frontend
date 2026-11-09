@@ -1,6 +1,6 @@
 import { Box, Center } from "@hope-ui/solid"
 import { Show, createMemo, createSignal, onCleanup, onMount } from "solid-js"
-import { useRouter, useLink, useFetch } from "~/hooks"
+import { useRouter, useLink, useFetch, useT } from "~/hooks"
 import {
   getMainColor,
   getSettingBool,
@@ -62,6 +62,7 @@ export interface Meta {
 }
 
 const Preview = () => {
+  const t = useT()
   const { pathname, searchParams } = useRouter()
   const { proxyLink } = useLink()
   const navigate = useNavigate()
@@ -333,7 +334,7 @@ const Preview = () => {
           (l) => l.url,
         )
       if (list.length === 0) {
-        notify.error("No transcoding video found")
+        notify.error(t("home.preview.no_transcoded_video"))
         return
       }
       option.url = list[list.length - 1].url
@@ -406,7 +407,7 @@ const Preview = () => {
           (l) => l.url,
         )
       if (list.length === 0) {
-        notify.error("No transcoding video found")
+        notify.error(t("home.preview.no_transcoded_video"))
         return
       }
       const quality = list.map((item, i) => {

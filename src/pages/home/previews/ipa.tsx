@@ -24,6 +24,7 @@ import { useT, useLink } from "~/hooks"
 import { getSetting, isFileDownloadEnabled, objStore } from "~/store"
 import { api, baseName, notify, safeBtoa } from "~/utils"
 import { FileInfo } from "./info"
+import { requestShortLink } from "~/utils/short_link"
 
 const Ipa = () => {
   const t = useT()
@@ -37,20 +38,11 @@ const Ipa = () => {
   const sourceLink = () => currentObjLink(true)
 
   const createShortLink = async (url = sourceLink()) => {
-    const shortLinkAPI = getSetting("short_link_api").trim()
-    if (!shortLinkAPI) {
-      throw new Error("Short link API is not configured")
-    }
-    const response = await fetch(shortLinkAPI, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url }),
+    return requestShortLink(url, getSetting("short_link_api"), {
+      failed: t("home.preview.short_link_failed"),
+      network: t("home.preview.short_link_network"),
+      invalid: t("home.preview.short_link_invalid"),
     })
-    const body = await response.json()
-    if (!response.ok || !body.link) {
-      throw new Error(body.message || "Failed to create short link")
-    }
-    return body.link as string
   }
 
   const getShortLink = async () => {
@@ -69,11 +61,15 @@ const Ipa = () => {
       textarea.value = value
       textarea.style.position = "fixed"
       textarea.style.opacity = "0"
-      document.body.appendChild(textarea)
-      textarea.select()
-      const copied = document.execCommand("copy")
-      textarea.remove()
-      return copied
+      try {
+        document.body.appendChild(textarea)
+        textarea.select()
+        return document.execCommand("copy")
+      } catch {
+        return false
+      } finally {
+        textarea.remove()
+      }
     }
   }
 
@@ -87,7 +83,9 @@ const Ipa = () => {
       setShortLinkOpen(true)
     } catch (error) {
       notify.error(
-        error instanceof Error ? error.message : "Failed to create short link",
+        error instanceof Error
+          ? error.message
+          : t("home.preview.short_link_failed"),
       )
     }
   }
@@ -107,9 +105,7 @@ const Ipa = () => {
       )
       setQrOpen(true)
     } catch (error) {
-      notify.error(
-        error instanceof Error ? error.message : "Failed to create short link",
-      )
+      notify.error(t("home.preview.qr_failed"))
     }
   }
 
@@ -158,23 +154,22 @@ const Ipa = () => {
           {t(`home.preview.${trInstalling() ? "tr-installing" : "tr-install"}`)}
         </Button>
         <Show when={isFileDownloadEnabled()}>
-          <Button
-            as="a"
-            href={shortLink() || undefined}
-            target="_blank"
-            disabled={!shortLink()}
-          >
+          <Button as="a" href={shortLink() || sourceLink()} target="_blank">
             {t("home.preview.download")}
           </Button>
           <ButtonGroup colorScheme="accent" attached>
             <Button onClick={copyShortLink}>
-              {t("home.toolbar.copy_link")}
+              {t(
+                getSetting("short_link_api").trim()
+                  ? "home.toolbar.copy_short_link"
+                  : "home.toolbar.copy_link",
+              )}
             </Button>
             <Popover opened={qrOpen()} motionPreset="none">
               <PopoverTrigger
                 as={IconButton}
                 icon={<BsQrCode />}
-                aria-label="QRCode"
+                aria-label={t("global.qr_code")}
                 onClick={toggleQRCode}
               />
               <PopoverContent width="fit-content">
@@ -183,7 +178,7 @@ const Ipa = () => {
                   <Image
                     maxWidth="300px"
                     src={qrUrl()}
-                    alt="QR Code of download link"
+                    alt={t("global.download_qr_code")}
                     objectFit="cover"
                   />
                 </PopoverBody>
@@ -199,7 +194,7 @@ const Ipa = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>{t("home.toolbar.copy_link")}</ModalHeader>
+          <ModalHeader>{t("home.preview.copy_link_manually")}</ModalHeader>
           <ModalBody pb="$6">
             <Input
               value={shortLink()}

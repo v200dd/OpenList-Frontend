@@ -1227,7 +1227,7 @@ const TorrentPreview = () => {
                   }}
                 >
                   {selectedFiles().length === torrentInfo()!.files.length
-                    ? t("home.toolbar.offline_download_enhanced.cancel_select")
+                    ? t("home.toolbar.cancel_select")
                     : t("home.toolbar.offline_download_enhanced.select_all")}
                 </Button>
               </HStack>

@@ -21,7 +21,7 @@
   "env_check_not_ready": "环境未准备好",
   "env_check_refresh": "重新检查",
   "env_runtime": "运行时",
-  "env_serverless": "Serverless",
+  "env_serverless": "无服务器环境",
   "env_local": "本地 / 容器",
   "env_format": "存储格式",
   "env_driver": "数据库驱动",

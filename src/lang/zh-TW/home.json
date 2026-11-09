@@ -52,12 +52,39 @@
       "video360": "全景視頻播放器",
       "archive": "壓縮包預覽器",
       "torrent": "傳輸種子預覽器"
-    }
+    },
+    "zoom_out": "縮小",
+    "zoom_in": "放大",
+    "info": "檔案資訊",
+    "fit_page": "符合頁面",
+    "fit_height": "符合高度",
+    "fit_width": "符合寬度",
+    "rotate_left": "向左旋轉",
+    "rotate_right": "向右旋轉",
+    "search_language": "搜尋語言…",
+    "cursor_position": "第 {{line}} 行，第 {{column}} 欄",
+    "word_count": "{{count}} 字",
+    "show_all_players": "顯示全部播放器",
+    "no_transcoded_video": "未找到轉碼影片",
+    "math_load_failed": "數學公式樣式載入失敗，暫時無法顯示公式",
+    "diagram_load_failed": "圖表元件載入失敗，暫時無法顯示圖表",
+    "short_link_failed": "短連結產生失敗",
+    "short_link_network": "短連結服務連線失敗",
+    "short_link_invalid": "短連結服務傳回的連結無效",
+    "qr_failed": "二維碼產生失敗",
+    "copy_link_manually": "請選取並手動複製連結",
+    "doc_library_failed": "文件預覽元件載入失敗",
+    "failed_load_doc": "文件載入失敗",
+    "failed_load_excel": "試算表載入失敗",
+    "failed_load_ppt": "簡報載入失敗",
+    "failed_load_swf": "Flash 檔案載入失敗",
+    "editor_load_failed": "程式碼編輯器載入失敗"
   },
   "layouts": {
     "list": "列表視圖",
     "grid": "網格視圖",
-    "image": "圖片視圖"
+    "image": "圖片視圖",
+    "switch": "切換配置"
   },
   "no_images": "當前文件夾中沒有圖片",
   "load_more": "加載更多",
@@ -169,7 +196,10 @@
     "sequential_renaming_input3_placeholder": "前導零填充寬度（可選）",
     "find_replace": "查找並替換",
     "find_replace_desc": "查找並替換",
-    "no_actions": "無可用"
+    "no_actions": "無可用",
+    "copy_short_link": "複製短連結",
+    "fetching": "正在取得：",
+    "no_selected": "請先選擇檔案"
   },
   "transfer_seed": {
     "generate_title": "產生傳輸種子",
@@ -271,7 +301,8 @@
     "preview_rapid_failed": "還原檔案失敗",
     "select_at_least_one": "請至少選取一個檔案",
     "transit_path_required": "必須指定中轉路徑",
-    "source_path_required": "每個所選檔案都必須指定來源路徑"
+    "source_path_required": "每個所選檔案都必須指定來源路徑",
+    "files": "檔案清單"
   },
   "upload": {
     "add_as_task": "添加為任務",
