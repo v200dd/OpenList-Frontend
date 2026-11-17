@@ -1,3 +1,6 @@
+overrides:
+  # 2.0.1 uses RegExp lookbehind, which Safari/iOS before 16.4 cannot parse.
+  mdast-util-gfm-autolink-literal: 2.0.0
 allowBuilds:
   "@swc/core": true
   core-js: true
